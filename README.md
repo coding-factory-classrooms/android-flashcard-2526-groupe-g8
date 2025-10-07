@@ -11,6 +11,7 @@ Chaque manche présente **un extrait audio** (quelques secondes). Le joueur doit
 Il y a deux types de jeu :
 - **Jouissement Timide** : choisissez un audio seul et répondez-y !
 - **Foire au Jouissement** : choisissez une difficulté et répondez à tout ! Vous aurez votre score à la fin.
+Si votre score pue la merde, fermez l'application et allez vous instruire sur un site ban en France
 
 ### Exemple d’une partie
 1. L’application lit un court extrait sonore.
@@ -19,6 +20,7 @@ Il y a deux types de jeu :
     - Bonne réponse → gain de points.
     - Mauvaise réponse → révélation de la bonne personne, et on passe à la suivante.
 4. Le score final est affiché à la fin du quiz, avec un message personnalisé selon la performance et la culture du joueur !
+N'hésitez pas à partager votre score à vos amis !
 
 ---
 
