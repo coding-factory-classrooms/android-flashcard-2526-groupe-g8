@@ -19,7 +19,6 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
-
     public static final String TAG = "MainActivity";
 
     @SuppressLint("MissingInflatedId") // affiche un avertissment pour les Id des élément manquent
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button playBtn = findViewById(R.id.playBtn);
         playBtn.setOnClickListener( view -> {
-            Intent intent2 = new Intent(this, ThemeActivity.class);
+            Intent intent2 = new Intent(this, QuestionActivity.class);
             startActivity(intent2);
         });
 
