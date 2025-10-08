@@ -9,17 +9,24 @@ public class Question implements Parcelable {
     private String questionText;
     private List<String> options;
     private int correctAnswerIndex;
+    private String difficulty;
+    private String audioFile;
 
-    public Question(String questionText, List<String> options, int correctAnswerIndex) {
+    public Question(String questionText, List<String> options, int correctAnswerIndex,
+                    String difficulty, String audioFile) {
         this.questionText = questionText;
         this.options = options;
         this.correctAnswerIndex = correctAnswerIndex;
+        this.difficulty = difficulty;
+        this.audioFile = audioFile;
     }
 
     protected Question(Parcel in) {
         questionText = in.readString();
         options = in.createStringArrayList();
         correctAnswerIndex = in.readInt();
+        difficulty = in.readString();
+        audioFile = in.readString();
     }
 
     @Override
@@ -27,6 +34,8 @@ public class Question implements Parcelable {
         dest.writeString(questionText);
         dest.writeStringList(options);
         dest.writeInt(correctAnswerIndex);
+        dest.writeString(difficulty);
+        dest.writeString(audioFile);
     }
 
     @Override
@@ -50,24 +59,20 @@ public class Question implements Parcelable {
         return questionText;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
-
     public List<String> getOptions() {
         return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
     }
 
     public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
     }
 
-    public void setCorrectAnswerIndex(int correctAnswerIndex) {
-        this.correctAnswerIndex = correctAnswerIndex;
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public String getAudioFile() {
+        return audioFile;
     }
 
     public boolean isCorrect(int selectedIndex) {
@@ -77,9 +82,12 @@ public class Question implements Parcelable {
     @Override
     public String toString() {
         return "Question{" +
-                "questionText='" + questionText +
+                "questionText='" + questionText + '\'' +
                 ", options=" + options +
                 ", correctAnswerIndex=" + correctAnswerIndex +
+                ", difficulty='" + difficulty + '\'' +
+                ", audioFile='" + audioFile + '\'' +
                 '}';
     }
 }
+

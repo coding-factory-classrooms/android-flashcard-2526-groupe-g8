@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Arrays;
+import java.util.List;
 
 import Question.Question;
 
@@ -45,9 +46,15 @@ public class QuestionActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
 
+        //JSON
+        QuestionJSON questionData = QuestionJSON.loadFromJSON(this);
+        List<Question> questions1 = questionData.getQuestions();
+
+
+
         questions = new Question[]{
-                new Question("Qui est Novak Djokovic ?", Arrays.asList("Un joueur de tennis", "Un footballeur", "Un nageur", "Un rappeur"), 0),
-                new Question("Comment s'appelle Celestin ?", Arrays.asList("Jean", "Pierre", "Marine", "Eric"), 0)
+                new Question("Qui est Novak Djokovic ?", Arrays.asList("Un joueur de tennis", "Un footballeur", "Un nageur", "Un rappeur"), 0,"facile","nan.mp3"),
+                new Question("Comment s'appelle Celestin ?", Arrays.asList("Jean", "Pierre", "Marine", "Eric"), 0,"facile" , "oui.mp3")
         };
 
         loadQuestion(txtQuestion, rg);
