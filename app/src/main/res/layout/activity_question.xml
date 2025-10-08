@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#121212"
     android:padding="16dp"
-    tools:context=".ThemeActivity">
+    tools:context=".ModeActivity">
 
     <!-- Titre -->
     <TextView

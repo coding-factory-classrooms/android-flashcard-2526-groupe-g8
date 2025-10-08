@@ -29,14 +29,28 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // button to go on AboutActivity
         Intent intent = new Intent(this, AboutActivity.class);
 
         Button aboutBtn = findViewById(R.id.aboutBtn);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("MainActivity", "About Click !");
+                Log.i("MainActivity", "About Click About !");
                 startActivity(intent);
+            }
+        });
+
+        // button to go on ModeActivity
+
+        Intent intent2 = new Intent(this, ModeActivity.class);
+
+        Button playButton = findViewById(R.id.playButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("MainActivity2", "About Click Mode !");
+                startActivity(intent2);
             }
         });
 

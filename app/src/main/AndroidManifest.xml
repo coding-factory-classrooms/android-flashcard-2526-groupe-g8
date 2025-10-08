@@ -15,7 +15,7 @@
             android:name=".bottom_sheet_layout"
             android:exported="false" />
         <activity
-            android:name=".ThemeActivity"
+            android:name=".ModeActivity"
             android:exported="false" />
         <activity
             android:name=".EsterEggActivity"

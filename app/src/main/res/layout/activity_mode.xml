@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThemeActivity">
+    tools:context=".ModeActivity">
 
     <Button
-        android:id="@+id/enjoymentButton"
+        android:id="@+id/oneQuestionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="B1"
@@ -29,13 +29,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Linkbutton"
+        android:id="@+id/multipleQuestionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="B2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/themeTitleText"
         app:layout_constraintStart_toStartOf="@+id/themeTitleText"
-        app:layout_constraintTop_toTopOf="@+id/enjoymentButton" />
+        app:layout_constraintTop_toTopOf="@+id/oneQuestionButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
