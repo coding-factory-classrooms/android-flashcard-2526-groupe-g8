@@ -40,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button gameButton = findViewById(R.id.gameButton);
-        gameButton.setOnClickListener( view -> {
-            Intent intent2 = new Intent(this, ThemeActivity.class);
-            startActivity(intent2);
-        });
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
