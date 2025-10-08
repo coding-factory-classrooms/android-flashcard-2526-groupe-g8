@@ -28,6 +28,7 @@ public class QuestionActivity extends AppCompatActivity {
     private int questionIndex = 0;
     private Question[] questions;
     private MediaPlayer mediaQuestion, winSound, loseSound;
+    private boolean isValidated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class QuestionActivity extends AppCompatActivity {
         RadioGroup rg = findViewById(R.id.radioGroupQuestion);
         Button btnValidate = findViewById(R.id.validateButton);
         Button btnPlaySong = findViewById(R.id.buttonPlaySong1);
+        Button btnNextQuestion = findViewById(R.id.NextQuestionBTN);
         final int[] totalAnswer = {0};
 
         mediaQuestion = MediaPlayer.create(this, R.raw.oui);
@@ -45,6 +47,9 @@ public class QuestionActivity extends AppCompatActivity {
         loseSound = MediaPlayer.create(this, R.raw.nan);
 
         Intent intent = new Intent(this, MainActivity.class);
+        //hide Button NexQuestion
+        btnNextQuestion.setVisibility(View.GONE);
+
 
         //JSON
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this);
@@ -69,38 +74,44 @@ public class QuestionActivity extends AppCompatActivity {
 
         btnValidate.setOnClickListener(v -> {
             int selectedId = rg.getCheckedRadioButtonId();
+            //verif if user select answer
             if (selectedId == -1) {
                 Toast.makeText(this, "Choisis une réponse !", Toast.LENGTH_SHORT).show();
                 return;
             }
-            RadioButton selected = findViewById(selectedId);
-            int selectedIndex = rg.indexOfChild(selected);
+            //if user not validate answer
+            if (!isValidated) {
+                RadioButton selected = findViewById(selectedId);
+                int selectedIndex = rg.indexOfChild(selected);
 
-            if (currentQuestion.isCorrect(selectedIndex)) {
-                winSound.seekTo(0);
-                winSound.start();
-                totalAnswer[0]++ ;
-                Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
+                if (currentQuestion.isCorrect(selectedIndex)) {
+                    winSound.seekTo(0);
+                    winSound.start();
+                    totalAnswer[0]++;
+                    Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
+                } else {
+                    loseSound.seekTo(0);
+                    loseSound.start();
+                    Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
+                }
+                //change name and boolean for BTN
+                isValidated = true;
+                btnValidate.setText("Question suivante");
+
             } else {
-                loseSound.seekTo(0);
-                loseSound.start();
-                Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
-            }
+                //Next question
+                questionIndex++;
+                if (questionIndex < questions.length) {
+                    loadQuestion(txtQuestion, rg);
+                    btnValidate.setText("Valider");
+                    isValidated = false;
+                } else {
+                    Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
 
-
-            // Next Question or end game
-            questionIndex++;
-            if (questionIndex < questions.length) {
-                loadQuestion(txtQuestion, rg);
-            } else {
-                Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
-                //transfer data for dysplay result
-                intent.putExtra("scoreValue" , totalAnswer);
-                intent.putExtra("TotalQuestion" , questions.length);
-                //put question no correct in a new string
-
-
-                startActivity(intent);
+                    intent.putExtra("scoreValue", totalAnswer);
+                    intent.putExtra("TotalQuestion", questions.length);
+                    startActivity(intent);
+                }
             }
         });
     }
