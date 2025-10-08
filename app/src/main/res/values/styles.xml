@@ -8,6 +8,9 @@
         <item name="cardCornerRadius">12dp</item>
         <item name="cardElevation">4dp</item>
         <item name="rippleColor">@color/app_grey</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:padding">15dp</item>
     </style>
 
     <!-- orange -->

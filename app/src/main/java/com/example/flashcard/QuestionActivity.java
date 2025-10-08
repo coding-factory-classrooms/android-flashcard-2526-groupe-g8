@@ -62,6 +62,8 @@ public class QuestionActivity extends AppCompatActivity {
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
         questions = questionData.getQuestions();;
 
+        //TODO question X/MAX
+
         showQuestion();
 
         btnPlaySong.setOnClickListener(v -> playQuestionAudioFromStart());
