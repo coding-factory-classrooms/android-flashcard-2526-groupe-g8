@@ -1,6 +1,7 @@
 package com.example.flashcard;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +17,25 @@ import androidx.core.view.WindowInsetsCompat;
 public class ThemeActivity extends AppCompatActivity {
 
     public static final String TAG = "themeActivity";
-    Button button;
+
+    // Theme Buttons
+    Button buttonEnjoyement;
+    Button buttonLinkS;
+
+    // Difficulty Button
+    Button buttonEasy;
+    Button buttonMedium;
+    Button buttonHard;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_theme);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -41,7 +54,7 @@ public class ThemeActivity extends AppCompatActivity {
 //        };
 
     buttonEnjoyement = findViewById(R.id.enjoymentButton); // Id manquant pour le bouton
-    button.setOnClickListener(new View.OnClickListener() {
+    buttonEnjoyement.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             showListView();
@@ -64,6 +77,26 @@ public class ThemeActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 // Traitement du choix de l'utilisateur a faire ici
                 Log.d(TAG, "onClick: " + which);
+
+                String difficulty = "";
+                switch (which) {
+                    case 0:
+                        difficulty = "easy";
+                        break;
+                    case 1:
+                        difficulty = "medium";
+                        break;
+                    case 2:
+                        difficulty = "hard";
+                        break;
+
+                }
+
+                Intent intent = new Intent(ThemeActivity.this, QuestionActivity.class);
+                intent.putExtra("difficulty" , difficulty);
+                startActivity(intent);
+
+
             }
         });
         AlertDialog alertDialog = builder.create();
