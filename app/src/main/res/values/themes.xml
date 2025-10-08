@@ -2,7 +2,34 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Flashcard" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+
+        <!-- Link to all styles attribute
+        https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/core/res/res/values/styles.xml -->
+
+
+        <item name="colorPrimary">@color/app_orange</item>
+        <item name="colorPrimaryVariant">@color/app_orange</item>
+        <item name="colorOnPrimary">@color/app_black</item>
+
+        <item name="colorSecondary">@color/app_grey</item>
+        <item name="colorOnSecondary">@color/app_white</item>
+
+        <item name="android:fontFamily">@font/inter_extbold</item>
+
+        <!-- Default background for all the activities -->
+        <item name="android:windowBackground">@color/app_grey</item>
+        <!-- Default color text for all.... you understand no ? -->
+        <item name="android:textColor">@color/app_white</item>
+        <!-- Font size-->
+        <item name="android:textSize">19sp</item>
+
+        <!-- I have the flemme of commenter all the fucking attributes-->
+        <item name="android:textStyle">bold</item>
+
+        <item name="materialCardViewStyle">@style/Widget.Flashcard.Card</item>
+        <item name="materialButtonStyle">@style/Widget.Flashcard.Button.Primary</item>
+
     </style>
 
     <style name="Theme.Flashcard" parent="Base.Theme.Flashcard" />

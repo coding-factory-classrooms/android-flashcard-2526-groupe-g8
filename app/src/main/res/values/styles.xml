@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Flashcard.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/app_black</item>
+        <item name="strokeColor">@color/app_grey</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="rippleColor">@color/app_grey</item>
+    </style>
+
+    <!-- orange -->
+    <style name="Widget.Flashcard.Card.Orange" parent="Widget.Flashcard.Card">
+        <item name="cardBackgroundColor">@color/app_orange</item>
+        <item name="strokeColor">@color/app_black</item>
+    </style>
+</resources>
