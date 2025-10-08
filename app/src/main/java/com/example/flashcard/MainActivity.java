@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = new Intent(this, AboutActivity.class);
-
         Button aboutBtn = findViewById(R.id.aboutBtn);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Log.i("MainActivity", "About Click !");
@@ -40,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button gameButton = findViewById(R.id.gameButton);
-        gameButton.setOnClickListener( view -> {
+        Button playBtn = findViewById(R.id.playBtn);
+        playBtn.setOnClickListener( view -> {
             Intent intent2 = new Intent(this, ThemeActivity.class);
             startActivity(intent2);
         });
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
