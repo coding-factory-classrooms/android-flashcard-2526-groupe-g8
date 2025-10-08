@@ -5,6 +5,79 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuestionActivity">
+    tools:context=".ThemeActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="QuestionGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/NameTextQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:text="Ceci est une question" />
+
+    <Button
+        android:id="@+id/buttonPlaySong1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Play Song"
+        app:layout_constraintEnd_toEndOf="@+id/NameTextQuestion"
+        app:layout_constraintStart_toStartOf="@+id/NameTextQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/NameTextQuestion" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonPlaySong1"
+        app:layout_constraintStart_toStartOf="@+id/buttonPlaySong1"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlaySong1">
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Reponse A" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Reponse A" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Reponse A" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Reponse A" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/validateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="@+id/buttonPlaySong1"
+        app:layout_constraintStart_toStartOf="@+id/buttonPlaySong1"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlaySong1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

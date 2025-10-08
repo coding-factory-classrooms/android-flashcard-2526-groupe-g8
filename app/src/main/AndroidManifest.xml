@@ -18,7 +18,7 @@
             android:name=".RewardActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ListQuestionActivity"
@@ -27,7 +27,7 @@
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".QuestionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
