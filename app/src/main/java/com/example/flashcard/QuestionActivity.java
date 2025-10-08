@@ -87,7 +87,12 @@ public class QuestionActivity extends AppCompatActivity {
                 loadQuestion(txtQuestion, rg);
             } else {
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
+                //transfer data for dysplay result
                 intent.putExtra("scoreValue" , totalAnswer);
+                intent.putExtra("TotalQuestion" , questions.length);
+                //put question no correct in a new string
+
+
                 startActivity(intent);
             }
         });

@@ -1,83 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="16dp"
     tools:context=".ThemeActivity">
 
+    <!-- Titre -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:text="QuestionGame"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#FFC107"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Question -->
     <TextView
         android:id="@+id/NameTextQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="Ceci est une question"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:padding="16dp"
+        android:background="#212121"
+        android:elevation="6dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="Ceci est une question" />
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/buttonPlaySong1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="Play Song"
-        app:layout_constraintEnd_toEndOf="@+id/NameTextQuestion"
-        app:layout_constraintStart_toStartOf="@+id/NameTextQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/NameTextQuestion" />
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Play Sound"
+        android:textColor="#121212"
+        android:textStyle="bold"
+        android:backgroundTint="#FFC107"
+        android:elevation="6dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/NameTextQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <RadioGroup
         android:id="@+id/radioGroupQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonPlaySong1"
-        app:layout_constraintStart_toStartOf="@+id/buttonPlaySong1"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlaySong1">
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonPlaySong1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="wrap_content"
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Reponse A" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Reponse A" />
+            android:text="Réponse A"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:background="#1E1E1E"
+            android:buttonTint="#FFC107"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp"/>
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Reponse A" />
+            android:text="Réponse B"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:background="#1E1E1E"
+            android:buttonTint="#FFC107"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp"/>
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Reponse A" />
+            android:text="Réponse C"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:background="#1E1E1E"
+            android:buttonTint="#FFC107"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Réponse D"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:background="#1E1E1E"
+            android:buttonTint="#FFC107"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp"/>
     </RadioGroup>
 
     <Button
         android:id="@+id/validateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="275dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/buttonPlaySong1"
-        app:layout_constraintStart_toStartOf="@+id/buttonPlaySong1"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlaySong1" />
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Valider"
+        android:textColor="#121212"
+        android:textStyle="bold"
+        android:backgroundTint="#FFC107"
+        android:elevation="6dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
