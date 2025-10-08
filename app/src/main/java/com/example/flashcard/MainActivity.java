@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Intent intent = new Intent(this, AboutActivity.class);
 
+        Intent intent = new Intent(this, AboutActivity.class);
         Button aboutBtn = findViewById(R.id.aboutBtn);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,9 +40,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        Log.d(TAG, "Hello Flashcard !");
     }
-
-
 }
