@@ -54,6 +54,7 @@ public class Question implements Parcelable {
         }
     };
 
+    //Get functions
     public String getQuestionText() {
         return questionText;
     }

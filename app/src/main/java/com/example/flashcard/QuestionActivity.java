@@ -39,6 +39,7 @@ public class QuestionActivity extends AppCompatActivity {
     // Gestion Vars
     private List<String> currentChoices;
     private int correctIndex = -1;
+    private boolean isValidated = false;
 
     // Audio vars
     private MediaPlayer mediaQuestion, winSound, loseSound;
@@ -66,56 +67,6 @@ public class QuestionActivity extends AppCompatActivity {
         btnPlaySong.setOnClickListener(v -> playQuestionAudioFromStart());
         btnValidate.setOnClickListener(v -> onValidateAnswer());
 
-
-
-//        maxQuestion = questions.toArray().length;
-
-//        loadQuestion(txtQuestion, rg);
-//
-//        btnPlaySong.setOnClickListener(v -> {
-//            if (mediaQuestion.isPlaying()) {
-//                mediaQuestion.pause();
-//                mediaQuestion.seekTo(0);
-//            }
-//            mediaQuestion.start();
-//        });
-//
-//        btnValidate.setOnClickListener(v -> {
-//            int selectedId = rg.getCheckedRadioButtonId();
-//            if (selectedId == -1) {
-//                Toast.makeText(this, "Choisis une réponse !", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//            RadioButton selected = findViewById(selectedId);
-//            int selectedIndex = rg.indexOfChild(selected);
-//
-//            if (currentQuestion.isCorrect(selectedIndex)) {
-//                winSound.seekTo(0);
-//                winSound.start();
-//                totalAnswer++ ;
-//                Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
-//            } else {
-//                loseSound.seekTo(0);
-//                loseSound.start();
-//                Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
-//            }
-//
-//
-//            // Next Question or end game
-//            questionIndex++;
-//            if (questionIndex < questions.toArray().length) {
-//                loadQuestion(txtQuestion, rg);
-//            } else {
-//                Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
-//                //transfer data for dysplay result
-//                intent.putExtra("scoreValue" , totalAnswer);
-//                intent.putExtra("TotalQuestion" , questions.toArray().length);
-//                //put question no correct in a new string
-//
-//
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void showQuestion() {
@@ -166,32 +117,43 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void onValidateAnswer() {
         int selectedId = rg.getCheckedRadioButtonId();
+        //verif if user select answer
         if (selectedId == -1) {
             Toast.makeText(this, "Choisis une réponse !", Toast.LENGTH_SHORT).show();
             return;
         }
-        RadioButton selected = findViewById(selectedId);
-        int selectedIndex = rg.indexOfChild(selected);
+        //if user not validate answer
+        if(!isValidated){
+            RadioButton selected = findViewById(selectedId);
+            int selectedIndex = rg.indexOfChild(selected);
 
-        if (selectedIndex == correctIndex) {
-            play(winSound);
-            totalAnswer++;
-            Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
-        } else {
-            play(loseSound);
-            Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
-        }
+            if (selectedIndex == correctIndex) {
+                play(winSound);
+                totalAnswer++;
+                Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
+            } else {
+                play(loseSound);
+                Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
+            }
 
-        // suite
-        questionIndex++;
-        if (questionIndex < questions.size()) {
-            showQuestion();
-        } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("scoreValue", totalAnswer);
-            intent.putExtra("TotalQuestion", questions.size());
-            startActivity(intent);
-            finish();
+            //change name and boolean for BTN
+            isValidated = true;
+            btnValidate.setText("Question suivante");
+        }else{
+            // suite
+            questionIndex++;
+            if (questionIndex < questions.size()) {
+                showQuestion();
+                btnValidate.setText("Valider");
+                isValidated = false;
+            } else {
+                Intent intent = new Intent(this, MainActivity.class);
+                Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
+                intent.putExtra("scoreValue", totalAnswer);
+                intent.putExtra("TotalQuestion", questions.size());
+                startActivity(intent);
+                finish();
+            }
         }
     }
     private void initQuestionAudio(String audioFileName) {
