@@ -44,8 +44,5 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Hello Flashcard !");
     }
 
-    private void updateTitleName(String titleText) {
-        TextView title = findViewById(R.id.bannerTxt);
-        title.setText(titleText);
-    }
+
 }
