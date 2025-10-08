@@ -18,7 +18,7 @@
         <item name="android:fontFamily">@font/inter_extbold</item>
 
         <!-- Default background for all the activities -->
-        <item name="android:windowBackground">@color/app_black</item>
+        <item name="android:windowBackground">@color/app_grey</item>
         <!-- Default color text for all.... you understand no ? -->
         <item name="android:textColor">@color/app_white</item>
         <!-- Font size-->
@@ -27,7 +27,7 @@
         <!-- I have the flemme of commenter all the fucking attributes-->
         <item name="android:textStyle">bold</item>
 
-
+        <item name="materialCardViewStyle">@style/Widget.Flashcard.Card</item>
         <item name="materialButtonStyle">@style/Widget.Flashcard.Button.Primary</item>
 
     </style>

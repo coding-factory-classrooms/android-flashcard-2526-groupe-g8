@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base style for btn-->
-    <style name="Widget.Flashcard.Button.Primary" parent="Widget.MaterialComponents.Button">
+    <!-- PRIMARY (fond orange, texte noir) -->
+    <style name="Widget.Flashcard.Button.Primary" parent="Widget.Material3.Button">
         <item name="android:textAllCaps">false</item>
         <item name="cornerRadius">12dp</item>
-        <item name="backgroundTint">@color/app_orange</item>
-        <item name="android:textColor">@color/app_black</item>
-        <item name="rippleColor">@color/app_grey</item>
-        <item name="strokeColor">@color/app_orange</item>
-        <item name="strokeWidth">2dp</item>
+
+        <item name="backgroundTint">@color/btn_primary_bg</item>
+        <item name="android:textColor">@color/btn_primary_text</item>
+        <item name="iconTint">@color/btn_primary_text</item>
+
+        <item name="strokeWidth">0dp</item>
+        <item name="rippleColor">@color/btn_ripple</item>
+        <item name="elevation">2dp</item>  <!-- léger relief pro -->
     </style>
 
-    <!-- SECONDARY-->
-    <style name="Widget.Flashcard.Button.Secondary" parent="Widget.Flashcard.Button.Primary">
-        <item name="backgroundTint">@color/app_black</item>
-        <item name="android:textColor">@color/app_orange</item>
-        <item name="strokeColor">@color/app_orange</item>
+    <!-- SECONDARY (fond noir, texte orange) -->
+    <style name="Widget.Flashcard.Button.Secondary" parent="Widget.Material3.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">12dp</item>
+
+        <item name="backgroundTint">@color/btn_secondary_bg</item>
+        <item name="android:textColor">@color/btn_secondary_text</item>
+        <item name="iconTint">@color/btn_secondary_text</item>
+
+        <item name="strokeWidth">0dp</item>
+        <item name="rippleColor">@color/btn_ripple</item>
+        <item name="elevation">0dp</item>  <!-- look plus “flat” -->
     </style>
 
-    <!-- OUTLINE -->
+    <!-- OUTLINED (fond transparent, contour orange, texte orange) -->
     <style name="Widget.Flashcard.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="strokeColor">@color/app_orange</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">12dp</item>
+
+        <item name="strokeColor">@color/btn_outline_stroke</item>
         <item name="strokeWidth">2dp</item>
-        <item name="android:textColor">@color/app_orange</item>
+
+        <item name="android:textColor">@color/btn_outline_text</item>
+        <item name="iconTint">@color/btn_outline_text</item>
+
+        <item name="rippleColor">@color/btn_ripple</item>
+        <item name="elevation">0dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
-    <!-- THIRD-->
-    <style name="Widget.Flashcard.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
-        <item name="backgroundTint">@color/app_grey</item>
-        <item name="android:textColor">@color/app_white</item>
+    <!-- GHOST (texte gris, pas de fond/bordure) -->
+    <style name="Widget.Flashcard.Button.Ghost" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="strokeColor">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+
+        <item name="android:textColor">@color/app_disabled</item>
+        <item name="iconTint">@color/app_disabled</item>
+        <item name="rippleColor">@color/btn_ripple</item>
     </style>
+
 </resources>
+
