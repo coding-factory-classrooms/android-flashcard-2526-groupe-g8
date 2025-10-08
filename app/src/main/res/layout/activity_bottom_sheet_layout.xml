@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bottom_sheet_layout">
+
+    <TextView
+        android:id="@+id/ChooseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="254dp"
+        android:layout_marginBottom="650dp"
+        android:text="Choisi la difficulté"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="séléctionner l'une des actions ci-dessous"
+        android:textColor="#90C1BBBB"
+        app:layout_constraintStart_toStartOf="@+id/ChooseTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ChooseTextView" />
+
+    <Button
+        android:id="@+id/easyButton"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ellipsize="middle"
+        android:text="Easy"
+        app:iconSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="90dp" />
+
+    <Button
+        android:id="@+id/mediumButton"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="Medium"
+        app:layout_constraintEnd_toEndOf="@+id/easyButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/easyButton"
+        app:layout_constraintTop_toBottomOf="@+id/easyButton" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="Hard"
+        app:layout_constraintEnd_toEndOf="@+id/easyButton"
+        app:layout_constraintStart_toStartOf="@+id/easyButton"
+        tools:layout_editor_absoluteY="178dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,7 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appDesc" />
 
-    SQ
 
     <androidx.cardview.widget.CardView
         style="@style/Widget.Flashcard.Card"

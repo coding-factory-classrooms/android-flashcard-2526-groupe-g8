@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flashcard">
         <activity
+            android:name=".bottom_sheet_layout"
+            android:exported="false" />
+        <activity
+            android:name=".ThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".EsterEggActivity"
             android:exported="false" />
         <activity
