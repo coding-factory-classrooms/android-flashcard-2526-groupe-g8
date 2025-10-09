@@ -27,13 +27,13 @@
             android:name=".Activity.QuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ListQuestionActivity"
+            android:name=".Activity.ThemeListActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ThemeListActivity"
+            android:name=".Activity.ListQuestionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

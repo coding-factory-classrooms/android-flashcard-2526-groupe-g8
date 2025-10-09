@@ -14,8 +14,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.flashcard.Question;
 import com.example.flashcard.R;
 import com.example.flashcard.Theme;
+
+import java.util.ArrayList;
 
 public class ModeActivity extends AppCompatActivity {
     public String difficulty = "";
@@ -29,8 +32,12 @@ public class ModeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
 
+//        ArrayList<Question> questions = getIntent().getParcelableExtra("questions");
+//
+//        Log.d("ListQuestionActivity", questions.toString());
+
         Theme t = getIntent().getParcelableExtra("theme");
-        Log.d("ModeActivity", "Thème reçu : " + t.toString());
+
 
         // button one question
         Intent intent2 = new Intent(this, ListQuestionActivity.class);
