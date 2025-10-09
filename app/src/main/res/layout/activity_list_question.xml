@@ -7,11 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".ListQuestionActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salut"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="251dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListeQuestions"
+        android:layout_width="389dp"
+        android:layout_height="629dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_listquestions" />
 </androidx.constraintlayout.widget.ConstraintLayout>

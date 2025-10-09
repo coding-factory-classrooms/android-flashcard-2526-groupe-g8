@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flashcard">
         <activity
-            android:name=".MainActivity"
+            android:name=".ThemeListActivity"
             android:exported="false" />
         <activity
             android:name=".ThemeActivity"
@@ -27,13 +27,13 @@
             android:name=".QuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".ListQuestionActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".ThemeListActivity"
+            android:name=".ListQuestionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

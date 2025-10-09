@@ -18,9 +18,6 @@ public class QuestionJSON {
     public ArrayList<Question> getQuestions() {
         return questions;
     }
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
-    }
 
     public static QuestionJSON loadFromJSON(Context context, int idJson) {
         Gson gson = new Gson();

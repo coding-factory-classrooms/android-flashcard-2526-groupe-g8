@@ -1,24 +1,47 @@
-package com.example.flashcard;
+    package com.example.flashcard;
 
-import android.os.Bundle;
+    import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+    import androidx.activity.EdgeToEdge;
+    import androidx.appcompat.app.AppCompatActivity;
+    import androidx.core.graphics.Insets;
+    import androidx.core.view.ViewCompat;
+    import androidx.core.view.WindowInsetsCompat;
+    import androidx.recyclerview.widget.LinearLayoutManager;
+    import androidx.recyclerview.widget.RecyclerView;
 
-public class ListQuestionActivity extends AppCompatActivity {
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_list_question);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+    public class ListQuestionActivity extends AppCompatActivity {
+
+        private ListQuestionAdapter adapter;
+        private ArrayList<Question> questions;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            EdgeToEdge.enable(this);
+            setContentView(R.layout.activity_list_question);
+            UiUtils.updateTitleName(this, "Questionnaire");
+
+            questions = new ArrayList<>();
+
+            QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
+            questions = questionData.getQuestions();
+
+            adapter = new ListQuestionAdapter(questions);
+
+            RecyclerView recyclerView = findViewById(R.id.ListeQuestions);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
     }
-}
