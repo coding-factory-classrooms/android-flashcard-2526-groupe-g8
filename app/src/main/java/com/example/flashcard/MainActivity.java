@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     public static final String TAG = "MainActivity";
 
-    @SuppressLint("MissingInflatedId") // affiche un avertissment pour les Id des élément manquent
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        Log.d(TAG, "Hello Flashcard !");
     }
 }
