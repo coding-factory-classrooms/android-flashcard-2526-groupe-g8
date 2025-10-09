@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.flashcard.Question;
 import com.example.flashcard.R;
 import com.example.flashcard.Theme;
+import com.example.flashcard.Utils.UiUtils;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class ModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
-
+        UiUtils.updateTitleName(this,"Mode de Jeu");
 //        ArrayList<Question> questions = getIntent().getParcelableExtra("questions");
 //
 //        Log.d("ListQuestionActivity", questions.toString());
