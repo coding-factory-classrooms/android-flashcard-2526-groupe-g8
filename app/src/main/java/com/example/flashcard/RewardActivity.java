@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class RewardActivity extends AppCompatActivity {
-
     Button bouton;
 
     @Override
@@ -42,6 +42,13 @@ public class RewardActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+        Intent srcIntent = getIntent();
+        int totalAns = srcIntent.getIntExtra("scoreValue",0);
+        int max
+
+        TextView scoretxt = findViewById(R.id.scoreText);
+        scoretxt.setText(totalAns + "");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
