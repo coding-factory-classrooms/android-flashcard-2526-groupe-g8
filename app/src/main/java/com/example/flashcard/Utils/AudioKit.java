@@ -10,12 +10,14 @@ public final class AudioKit {
     public enum Sfx {
         QUESTION,
         WIN,
-        LOSE
+        LOSE,
+        ROBIN
     }
 
     private static MediaPlayer mpQuestion;   // question
     private static MediaPlayer mpWin;        // sfx win (
     private static MediaPlayer mpLose;       // sfx lose
+    private static MediaPlayer mpRobin;       // sfx lose
     private static String currentFile;       // joui_novak.mp3
 
     private AudioKit() {}
@@ -68,6 +70,12 @@ public final class AudioKit {
                 if (mpLose == null) mpLose = MediaPlayer.create(app, R.raw.nan);
                 if (mpLose.isPlaying()) mpLose.seekTo(0);
                 mpLose.start();
+                break;
+            case ROBIN:
+                //if LOSE
+                if (mpRobin == null) mpRobin = MediaPlayer.create(app, R.raw.joui_robin);
+                if (mpRobin.isPlaying()) mpRobin.seekTo(0);
+                mpRobin.start();
                 break;
         }
     }

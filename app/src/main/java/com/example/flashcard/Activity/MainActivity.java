@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.flashcard.R;
+import com.example.flashcard.Utils.AudioKit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        AudioKit.play(this, AudioKit.Sfx.ROBIN, null);
 
         Intent intent = new Intent(this, AboutActivity.class);
         Button aboutBtn = findViewById(R.id.aboutBtn);
