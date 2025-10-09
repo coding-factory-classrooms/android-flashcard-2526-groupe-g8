@@ -19,7 +19,23 @@
         <item name="strokeColor">@color/app_black</item>
     </style>
 
-    <style name="Widget.Flashcard.RadioButton" parent="android:Widget.CompoundButton.RadioButton">
+    <style name="TextAppearance.Flashcard.Radio" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/inter_extbold</item>
+    </style>
+
+    <style name="Widget.Flashcard.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="useMaterialThemeColors">false</item>
+
+        <item name="buttonTint">@color/rb_tint</item>
+        <item name="android:buttonTint">@color/rb_tint</item>
         <item name="android:textColor">@color/app_white</item>
+
+        <item name="android:textAppearance">@style/TextAppearance.Flashcard.Radio</item>
+        <item name="android:gravity">center_vertical</item>
+
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
     </style>
 </resources>

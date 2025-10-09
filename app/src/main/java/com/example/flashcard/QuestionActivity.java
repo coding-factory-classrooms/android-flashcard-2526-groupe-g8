@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -21,11 +22,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import Question.Question;
 
 public class QuestionActivity extends AppCompatActivity {
+
+    //region V A R S
 
     // UI vars
     private TextView txtQuestion;
@@ -44,13 +48,16 @@ public class QuestionActivity extends AppCompatActivity {
     private List<String> currentChoices;
     private int correctIndex = -1;
     private boolean isValidated = false;
+    private String difficulty = "hard";
 
-    // Audio vars
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+
+        UiUtils.updateTitleName(this, "C'est l'heure de jouir !");
 
         txtQuestion = findViewById(R.id.NameTextQuestion);
         rg = findViewById(R.id.radioGroupQuestion);
@@ -62,31 +69,29 @@ public class QuestionActivity extends AppCompatActivity {
         questions = questionData.getQuestions();;
 
         showQuestion();
+        updateProgressTxt();
 
         btnPlaySong.setOnClickListener(v -> AudioKit.play(this, AudioKit.Sfx.QUESTION, currentQuestion.getAudioFile()));
         btnValidate.setOnClickListener(v -> onValidateAnswer());
-
     }
 
     private void showQuestion() {
         currentQuestion = questions.get(questionIndex);
-
         // Set questionText (from json)
         txtQuestion.setText(currentQuestion.getQuestionText());
-
         // build choices
-        currentChoices = buildChoices(currentQuestion);
+        //TODO: get difficulty !
+        currentChoices = buildChoices(currentQuestion, difficulty);
         // find the good answer after the shuffle !! indexOf is magiiiiiikk
         correctIndex = currentChoices.indexOf(currentQuestion.getAnswer());
 
         // show RadioButton dynamicly because we are programmer or we not are you know or what quoicoubeh
         // Welcome in JouiQuizz's Studio dude
-
         //clear view
         rg.removeAllViews();
         //foreach
         for (String label : currentChoices) {
-            RadioButton rb = new RadioButton(this);
+            RadioButton rb = new RadioButton(new ContextThemeWrapper(this, R.style.Widget_Flashcard_RadioButton), null, 0);
             rb.setId(View.generateViewId()); //set id
             rb.setText(label); //set text
             rg.addView(rb); // A D D  I T !!
@@ -95,19 +100,30 @@ public class QuestionActivity extends AppCompatActivity {
         rg.clearCheck();
     }
 
-    //TODO : Faire notre propre truc, la c'est gpt en attendant et jsuis pas sur du truc
-    private List<String> buildChoices(Question q) {
-        // combien de distracteurs ? (ex: 3, et on clamp sur la taille)
-        int wantedDistractors = Math.min(3, q.getOptions() != null ? q.getOptions().size() : 0);
 
-        List<String> pool = new java.util.ArrayList<>(q.getOptions()); // copie
-        java.util.Collections.shuffle(pool);
-        List<String> picks = pool.subList(0, wantedDistractors);
-        List<String> choices = new java.util.ArrayList<>(picks);
-        // on ajoute la bonne réponse
+    private List<String> buildChoices(Question q, String d) {
+        // how much fake options
+        int wanted;
+
+        switch (d) {
+            case "easy":   wanted = 2; break;
+            case "hard":   wanted = 4; break;
+            default:       wanted = 3; //normal
+        }
+
+        // make pool of options
+        List<String> pool = new ArrayList<>(q.getOptions());
+
+        // Take the wanted number from the pool
+        int take = Math.min(wanted, pool.size());
+        List<String> choices = new ArrayList<>(pool.subList(0, take));
+
+        // add the answer inside the choices
         choices.add(q.getAnswer());
-        // on mélange le tout
-        java.util.Collections.shuffle(choices);
+
+        // S H U F F L A G E !
+        Collections.shuffle(choices);
+
         return choices;
     }
 
@@ -141,6 +157,7 @@ public class QuestionActivity extends AppCompatActivity {
             questionIndex++;
             if (questionIndex < questions.size()) {
                 showQuestion();
+                updateProgressTxt();
                 btnValidate.setText("Valider");
                 isValidated = false;
             } else {
@@ -158,11 +175,14 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
-
+    private void updateProgressTxt(){
+        TextView progress = findViewById(R.id.progressTxt);
+        int uiQuestionIndex = questionIndex + 1;
+        progress.setText(uiQuestionIndex + "/" + questions.size());
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 }

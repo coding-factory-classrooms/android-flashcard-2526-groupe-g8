@@ -29,7 +29,7 @@
 
         <item name="materialCardViewStyle">@style/Widget.Flashcard.Card</item>
         <item name="materialButtonStyle">@style/Widget.Flashcard.Button.Primary</item>
-
+        <item name="radioButtonStyle">@style/Widget.Flashcard.RadioButton</item>
     </style>
 
     <style name="Theme.Flashcard" parent="Base.Theme.Flashcard" />
