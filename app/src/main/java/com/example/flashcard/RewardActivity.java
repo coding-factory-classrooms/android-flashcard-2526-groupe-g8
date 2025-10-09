@@ -24,6 +24,21 @@ public class RewardActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reward);
 
+        // print of score and difficulty
+        // recuperation of score
+
+        Intent srcIntent = getIntent();
+        int totalAns = srcIntent.getIntExtra("scoreValue",0);
+        int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
+        String difficulty = srcIntent.getStringExtra("difficulty");
+
+        TextView scoretxt = findViewById(R.id.scoreText);
+        scoretxt.setText(totalAns + "" + "/" + maxQuestion);
+
+        TextView difficulytxt = findViewById(R.id.difficultyText);
+        difficulytxt.setText(difficulty);
+
+
         // Button to go to retry
         Intent intent = new Intent(this , QuestionActivity.class);
 
@@ -46,15 +61,33 @@ public class RewardActivity extends AppCompatActivity {
             }
         });
 
+        // Ester egg button
+        Intent intent3 = new Intent(this , EsterEggActivity.class);
+
+        Button esterEggBtn = findViewById(R.id.esterEggBtn);
+        esterEggBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent3);
+            }
+        });
+
         // Button to go to home
-        Intent intent3 = new Intent(this , RewardActivity.class);
+        Intent intent4 = new Intent(this , RewardActivity.class);
 
         Button shareBtn = findViewById(R.id.shareBtn);
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // recuperation of score
 
+                // sharing score message
+                Intent sendMessageIntent = new Intent();
+                sendMessageIntent.setAction(Intent.ACTION_SEND);
+                sendMessageIntent.putExtra(Intent.EXTRA_TEXT, "J'ai eu" + totalAns +"/" + maxQuestion + " au quiz Difficile sur l'app FlashCard !");
+                sendMessageIntent.setType("text"); // indicates the type of content shared via the Intent (the MIME type).
+
+                Intent shareIntent = Intent.createChooser(sendMessageIntent, null);
+                startActivity(shareIntent);
 
             }
         });
