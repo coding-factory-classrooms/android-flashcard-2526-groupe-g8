@@ -1,23 +1,26 @@
 package com.example.flashcard;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapter.ViewHolder> {
+public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapter.ViewHolder> implements View.OnClickListener {
 
-    private ArrayList<Question> questions;
+    private List<Question> Questions;
 
     public ListQuestionAdapter(ArrayList<Question> questions) {
 
-        this.questions = questions;
+        Questions = questions;
     }
 
     @NonNull
@@ -29,31 +32,43 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Question question = Questions.get(position);
+        holder.title.setText(question.getQuestionText());
+        holder.difficulty.setText(question.getDifficulty());
 
+        holder.itemView.setTag(question);
+        holder.itemView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
 
-        return questions.size();
+        return Questions.size();
     }
 
+    //@Override
+    public void onClick(View view) {
+        Log.i("ListQuestionAdapter" , "On Click:class");
+        switch (view.getId()) {
+            case R.id.itemQlist:
+                Context context = view.getContext();
+                Question q = (Question) view.getTag();
+                Intent intent = new Intent(context, MainActivity.class);
+
+                context.startActivity(intent);
+                break;
+        }
+    }
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        final ImageView image; //
         final TextView title; //
-
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-            Question question = questions.get(position);
-            holder.title.setText(question.getQuestionText());
-        }
+        final TextView difficulty; //
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            image = itemView.findViewById(R.id.itemQimage); //
             title = itemView.findViewById(R.id.itemQtitle); //
+            difficulty = itemView.findViewById(R.id.itemQdifficulty); //
+
         }
     }
 }

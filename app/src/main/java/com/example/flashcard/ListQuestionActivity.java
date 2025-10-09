@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class ListQuestionActivity extends AppCompatActivity {
 
     private ArrayList<Question> questions;
@@ -24,8 +25,8 @@ public class ListQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_question);
         questions = new ArrayList<>();
 
-        for (int i = 0; i < 30; i++) {
-            questions.add(new Question("Qui est Novak Djokovic ?", Arrays.asList("Un joueur de tennis", "Un footballeur", "Un nageur", "Un rappeur"), 0,"facile","nan.mp3"));
+        for (int i = 0; i < 1; i++) {
+            questions.add(new Question("Qui est Novak Djokovic ?", Arrays.asList("test","ff","fff","dsfsdf"), 0,"facile","nan.mp3"));
 
         }
 

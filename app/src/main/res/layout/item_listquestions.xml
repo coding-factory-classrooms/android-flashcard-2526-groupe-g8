@@ -6,24 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
-    <ImageView
-        android:id="@+id/itemQimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_slideshow" />
-
     <TextView
         android:id="@+id/itemQtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Titre #1"
-        app:layout_constraintBottom_toBottomOf="@+id/itemQimage"
-        app:layout_constraintStart_toEndOf="@+id/itemQimage"
-        app:layout_constraintTop_toTopOf="@+id/itemQimage" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Titre #1" />
+
+    <TextView
+        android:id="@+id/itemQdifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/itemQtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemQtitle"
+        app:layout_constraintTop_toTopOf="@+id/itemQtitle"
+        tools:text="Difficulty #1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
