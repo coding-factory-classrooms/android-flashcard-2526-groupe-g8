@@ -1,14 +1,16 @@
 {
   "themes": [
     {
-      "title": "Joui",
-      "description": "Questions sur les bases du langage Java : classes, objets, boucles et structures de contrôle.",
-      "link": "joui.json"
+      "title": "Jouissement de plaisir...",
+      "description": "Affontez les jouissement les plus terrible de personalités.",
+      "link": "joui.json",
+      "img": "theme_joui"
     },
     {
-      "title": "Crie",
-      "description": "Questions sur les grands crie ",
-      "link": "crie.json"
+      "title": "Pet turbo puissant...",
+      "description": "Sniffez moi ces pets.",
+      "link": "crie.json",
+      "img": "clem_about"
     }
   ]
 }
