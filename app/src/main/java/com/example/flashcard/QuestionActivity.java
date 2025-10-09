@@ -153,7 +153,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RewardActivity.class);
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
                 intent.putExtra("scoreValue", totalAnswer);
-                intent.putExtra("TotalQuestion", questions.size());
+                intent.putExtra("totalQuestion", questions.size());
                 startActivity(intent);
                 finish();
             }

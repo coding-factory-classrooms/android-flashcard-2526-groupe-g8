@@ -45,10 +45,12 @@ public class RewardActivity extends AppCompatActivity {
 
         Intent srcIntent = getIntent();
         int totalAns = srcIntent.getIntExtra("scoreValue",0);
-        int max
+        int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
 
         TextView scoretxt = findViewById(R.id.scoreText);
-        scoretxt.setText(totalAns + "");
+        scoretxt.setText(totalAns + "" + "/" + maxQuestion);
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
