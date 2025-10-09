@@ -24,6 +24,21 @@ public class RewardActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reward);
 
+        // print of score and difficulty
+        // recuperation of score
+
+        Intent srcIntent = getIntent();
+        int totalAns = srcIntent.getIntExtra("scoreValue",0);
+        int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
+        String difficulty = srcIntent.getStringExtra("difficulty");
+
+        TextView scoretxt = findViewById(R.id.scoreText);
+        scoretxt.setText(totalAns + "" + "/" + maxQuestion);
+
+        TextView difficulytxt = findViewById(R.id.difficultyText);
+        difficulytxt.setText(difficulty);
+
+
         // Button to go to retry
         Intent intent = new Intent(this , QuestionActivity.class);
 
@@ -46,20 +61,25 @@ public class RewardActivity extends AppCompatActivity {
             }
         });
 
+        // Ester egg button
+        Intent intent3 = new Intent(this , EsterEggActivity.class);
+
+        Button esterEggBtn = findViewById(R.id.esterEggBtn);
+        esterEggBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent3);
+            }
+        });
+
         // Button to go to home
-        Intent intent3 = new Intent(this , RewardActivity.class);
+        Intent intent4 = new Intent(this , RewardActivity.class);
 
         Button shareBtn = findViewById(R.id.shareBtn);
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // recuperation of score
-                Intent srcIntent = getIntent();
-                int totalAns = srcIntent.getIntExtra("scoreValue",0);
-                int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
 
-                TextView scoretxt = findViewById(R.id.scoreText);
-                scoretxt.setText(totalAns + "" + "/" + maxQuestion);
                 // sharing score message
                 Intent sendMessageIntent = new Intent();
                 sendMessageIntent.setAction(Intent.ACTION_SEND);
@@ -71,16 +91,6 @@ public class RewardActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-//        // sharing score pic
-//        Intent shareIntent = new Intent();
-//        shareIntent.setAction(Intent.ACTION_SEND);
-//// Example: content://com.google.android.apps.photos.contentprovider/...
-//        shareIntent.putExtra(Intent.EXTRA_STREAM, uriToImage);
-//        shareIntent.setType("image/jpeg");
-//        startActivity(Intent.createChooser(shareIntent, null));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

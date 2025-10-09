@@ -59,4 +59,15 @@
         app:layout_constraintEnd_toStartOf="@+id/homeBtn"
         app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toEndOf="@+id/retryBtn" />
+
+    <Button
+        android:id="@+id/esterEggBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/btn_ripple"
+        app:layout_constraintBottom_toTopOf="@+id/shareBtn"
+        app:layout_constraintEnd_toStartOf="@+id/homeBtn"
+        app:layout_constraintStart_toEndOf="@+id/retryBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
