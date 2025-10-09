@@ -45,6 +45,10 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder> 
     @Override
     public void onClick(View view) {
         Log.i("Action" , "On Click");
+
+
+
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
