@@ -40,14 +40,12 @@ public class QuestionActivity extends AppCompatActivity {
     private int questionIndex = 0;
     private int totalAnswer = 0;
 
-
     // Gestion Vars
     private List<String> currentChoices;
     private int correctIndex = -1;
     private boolean isValidated = false;
 
     // Audio vars
-    private MediaPlayer mediaQuestion, winSound, loseSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,27 +57,19 @@ public class QuestionActivity extends AppCompatActivity {
         btnValidate = findViewById(R.id.validateButton);
         btnPlaySong = findViewById(R.id.buttonPlaySong1);
 
-        // static sounds (they will never changes)
-        winSound  = MediaPlayer.create(this, R.raw.oui);
-        loseSound = MediaPlayer.create(this, R.raw.nan);
-
         // JSON
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
         questions = questionData.getQuestions();;
-        //TODO question X/MAX
 
         showQuestion();
 
-        btnPlaySong.setOnClickListener(v -> playQuestionAudioFromStart());
+        btnPlaySong.setOnClickListener(v -> AudioKit.play(this, AudioKit.Sfx.QUESTION, currentQuestion.getAudioFile()));
         btnValidate.setOnClickListener(v -> onValidateAnswer());
 
     }
 
     private void showQuestion() {
         currentQuestion = questions.get(questionIndex);
-
-        // Init question audio (from json)
-        initQuestionAudio(currentQuestion.getAudioFile());
 
         // Set questionText (from json)
         txtQuestion.setText(currentQuestion.getQuestionText());
@@ -134,11 +124,11 @@ public class QuestionActivity extends AppCompatActivity {
             int selectedIndex = rg.indexOfChild(selected);
 
             if (selectedIndex == correctIndex) {
-                play(winSound);
+                AudioKit.play(this, AudioKit.Sfx.WIN, null);
                 totalAnswer++;
                 Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
             } else {
-                play(loseSound);
+                AudioKit.play(this, AudioKit.Sfx.LOSE, null);
                 wrongAnswer.add(currentQuestion);
                 Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
             }
@@ -167,41 +157,12 @@ public class QuestionActivity extends AppCompatActivity {
             }
         }
     }
-    private void initQuestionAudio(String audioFileName) {
-        if (mediaQuestion != null) mediaQuestion.release();
-        int resId = resolveRawId(audioFileName);
-        mediaQuestion = (resId != 0) ? MediaPlayer.create(this, resId) : null;
-    }
 
-    private void playQuestionAudioFromStart() {
-        if (mediaQuestion == null) return;
-        if (mediaQuestion.isPlaying()) {
-            mediaQuestion.pause();
-            mediaQuestion.seekTo(0);
-        }
-        mediaQuestion.start();
-    }
-
-    private void play(MediaPlayer mp) {
-        if (mp == null) return;
-        if (mp.isPlaying()) mp.seekTo(0);
-        mp.start();
-    }
-
-    private int resolveRawId(String fileName) {
-        String base = fileName;
-        int dot = base.lastIndexOf('.');
-        if (dot > 0) base = base.substring(0, dot);
-        base = base.toLowerCase(java.util.Locale.ROOT);
-        return getResources().getIdentifier(base, "raw", getPackageName());
-    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mediaQuestion != null) mediaQuestion.release();
-        if (winSound != null) winSound.release();
-        if (loseSound != null) loseSound.release();
+
     }
 }

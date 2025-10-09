@@ -3,69 +3,79 @@ package com.example.flashcard;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-import java.util.Locale;
-
 public final class AudioKit {
 
-    private static MediaPlayer questionPlayer;
-    private static MediaPlayer winSfx;
-    private static MediaPlayer loseSfx;
-
-    private AudioKit() { }
-
-    // Appelle ça UNE FOIS (par ex. dans onCreate de ta 1ère Activity)
-    public static void initSfx(Context ctx) {
-        winSfx  = MediaPlayer.create(ctx, R.raw.oui);
-        loseSfx = MediaPlayer.create(ctx, R.raw.nan);
+    public enum Sfx {
+        QUESTION,
+        WIN,
+        LOSE
     }
 
-    // Prépare l'audio de la question depuis un nom de fichier "xxx.mp3" situé dans res/raw
-    public static void prepareQuestion(Context ctx, String rawFileName) {
-        releaseQuestion();
-        int id = resolveRawId(ctx, rawFileName); // "joui_novak.mp3" -> R.raw.joui_novak
-        questionPlayer = MediaPlayer.create(ctx, id);
-    }
+    private static MediaPlayer mpQuestion;   // question
+    private static MediaPlayer mpWin;        // sfx win (
+    private static MediaPlayer mpLose;       // sfx lose
+    private static String currentFile;       // joui_novak.mp3
 
-    // Rejoue la question depuis le début
-    public static void replayQuestion() {
-        if (questionPlayer == null) return;
-        if (questionPlayer.isPlaying()) questionPlayer.pause();
-        questionPlayer.seekTo(0);
-        questionPlayer.start();
-    }
+    private AudioKit() {}
 
-    public static void playWin() {
-        if (winSfx == null) return;
-        if (winSfx.isPlaying()) winSfx.seekTo(0);
-        winSfx.start();
-    }
+    //PLAY | if question we need filename, otherwise nope
+    public static void play(Context ctx, Sfx whichSfx, String fileName) {
+        //get app ctx
+        Context app = ctx.getApplicationContext();
 
-    public static void playLose() {
-        if (loseSfx == null) return;
-        if (loseSfx.isPlaying()) loseSfx.seekTo(0);
-        loseSfx.start();
-    }
+        switch (whichSfx) {
+            case QUESTION:
+                // we cant spam it
+                if (mpQuestion != null &&
+                        fileName.equals(currentFile) &&
+                        mpQuestion.isPlaying()) {
+                    return;
+                }
+                // If same file, but not actually playing
+                if (mpQuestion != null && fileName.equals(currentFile)) {
+                    mpQuestion.seekTo(0); //reset
+                    mpQuestion.start(); //START IT
+                    return;
+                }
+                // If new file release at remove it
+                if (mpQuestion != null) {
+                    mpQuestion.release();
+                    mpQuestion = null;
+                }
 
-    public static void releaseAll() {
-        releaseQuestion();
-        if (winSfx != null) { winSfx.release(); winSfx = null; }
-        if (loseSfx != null) { loseSfx.release(); loseSfx = null; }
-    }
+                //get row ID with filname
+                int qId = resolveRawId(app, fileName);
+                //create the media player (with the ctx and the audio ID !)
+                mpQuestion = MediaPlayer.create(app, qId);
+                //stock it for later
+                currentFile = fileName;
+                //START IT (beacause its play a method remind it !)
+                mpQuestion.start();
+                break;
 
-    // --- privates ---
+            case WIN:
+                //if WIN
+                //it' same logic but simply
+                if (mpWin == null) mpWin = MediaPlayer.create(app, R.raw.oui);
+                if (mpWin.isPlaying()) mpWin.seekTo(0);
+                mpWin.start();
+                break;
 
-    private static void releaseQuestion() {
-        if (questionPlayer != null) {
-            questionPlayer.release();
-            questionPlayer = null;
+            case LOSE:
+                //if LOSE
+                if (mpLose == null) mpLose = MediaPlayer.create(app, R.raw.nan);
+                if (mpLose.isPlaying()) mpLose.seekTo(0);
+                mpLose.start();
+                break;
         }
     }
 
+    // helper for get raw id
     private static int resolveRawId(Context ctx, String fileName) {
+        // "joui_novak.mp3" to R.raw.joui_novak
         String base = fileName;
         int dot = base.lastIndexOf('.');
         if (dot > 0) base = base.substring(0, dot);
-        base = base.toLowerCase(Locale.ROOT); // res/raw doit être en minuscules/underscore
         return ctx.getResources().getIdentifier(base, "raw", ctx.getPackageName());
     }
 }
