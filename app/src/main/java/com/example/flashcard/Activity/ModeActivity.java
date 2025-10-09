@@ -31,18 +31,6 @@ public class ModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
-
-        ArrayList<Question> questions = getIntent().getParcelableArrayListExtra("questions");
-
-        Log.d("ListQuestionActivity", questions.toString());
-        Log.d("ListQuestionActivity", questions.toString());
-        Log.d("ListQuestionActivity", questions.toString());
-        Log.d("ListQuestionActivity", questions.toString());
-        Log.d("ListQuestionActivity", questions.toString());
-
-
-
-
         // button one question
         Intent intent2 = new Intent(this, ListQuestionActivity.class);
 
