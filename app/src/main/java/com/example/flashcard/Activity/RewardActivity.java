@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.flashcard.Question;
 import com.example.flashcard.R;
+import com.example.flashcard.Utils.UiUtils;
 
 import java.util.ArrayList;
 
@@ -27,19 +28,38 @@ public class RewardActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reward);
 
+        UiUtils.updateTitleName(this, "GouiGoui man");
+
         // print of score and difficulty
         // recuperation of score
-
         Intent srcIntent = getIntent();
         int totalAns = srcIntent.getIntExtra("scoreValue",0);
         int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
         String difficulty = srcIntent.getStringExtra("difficulty");
 
         TextView scoretxt = findViewById(R.id.scoreText);
-        scoretxt.setText(totalAns + "" + "/" + maxQuestion);
-
         TextView difficulytxt = findViewById(R.id.difficultyText);
-        difficulytxt.setText(difficulty);
+        TextView commentTxt = findViewById(R.id.commentTxt);
+
+        int correct = totalAns;
+        int total   = maxQuestion;
+        double ratio = (total > 0) ? (double) correct / total : 0.0;
+        int percent  = (int) Math.round(ratio * 100.0);
+
+        String comment;
+        if (percent < 50) {
+            comment = "Tu pues la merde";
+        } else if (percent <= 75) {
+            comment = "Ça va en vrai";
+        } else { // >75%
+            comment = "T'es bon mon frr";
+        }
+
+        scoretxt.setText(String.format(java.util.Locale.getDefault(),
+                "Score : %d/%d (%d%%)", correct, total, percent));
+        difficulytxt.setText("Difficulté choisie : " + difficulty);
+        commentTxt.setText(comment);
+
 
         ArrayList<Question> wrongAnswer = srcIntent.getParcelableArrayListExtra("wrongAnswer");
 
