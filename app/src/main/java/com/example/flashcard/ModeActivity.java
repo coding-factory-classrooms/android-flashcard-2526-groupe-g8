@@ -84,7 +84,6 @@ public class ModeActivity extends AppCompatActivity {
                             case 2:
                                 difficulty = "hard";
                                 break;
-
                         }
 
                         Intent intent = new Intent(ModeActivity.this, ListQuestionActivity.class);
