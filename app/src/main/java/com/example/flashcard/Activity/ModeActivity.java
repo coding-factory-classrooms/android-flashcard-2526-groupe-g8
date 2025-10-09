@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.flashcard.Question;
 import com.example.flashcard.R;
 import com.example.flashcard.Theme;
+import com.example.flashcard.Utils.UiUtils;
 
 import java.util.ArrayList;
 
@@ -31,17 +32,18 @@ public class ModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
-        // button one question
+        UiUtils.updateTitleName(this,"Mode de Jeu");
 
         Theme themeSelected = getIntent().getParcelableExtra("theme");
-        Log.d("bite", themeSelected.toString());
-        //btn single
+
+        // button one question
         Intent intent2 = new Intent(this, ListQuestionActivity.class);
         intent2.putExtra("theme", themeSelected);
         Button oneQuestionButton = findViewById(R.id.oneQuestionButton);
         oneQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("MainActivity2", "About Click Mode !");
                 startActivity(intent2);
             }
         });
