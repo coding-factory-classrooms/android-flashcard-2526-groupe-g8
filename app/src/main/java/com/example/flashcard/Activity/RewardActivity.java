@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.flashcard.ListQuestionAdapter;
 import com.example.flashcard.Question;
 import com.example.flashcard.R;
 
@@ -44,6 +47,20 @@ public class RewardActivity extends AppCompatActivity {
         ArrayList<Question> wrongAnswer = srcIntent.getParcelableArrayListExtra("wrongAnswer");
 
         //TODO: recycler de wrongAnswer
+
+        RecyclerView recyclerView = findViewById(R.id.ListeQuestions);
+
+        // wrongAnswer contains only questions failed
+        ListQuestionAdapter adapter = new ListQuestionAdapter(wrongAnswer);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // hide if none bad answer
+        if (wrongAnswer.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+        }
 
 
         // Button to go to retry
