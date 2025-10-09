@@ -1,45 +1,47 @@
-package com.example.flashcard;
+    package com.example.flashcard;
 
-import android.os.Bundle;
+    import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+    import androidx.activity.EdgeToEdge;
+    import androidx.appcompat.app.AppCompatActivity;
+    import androidx.core.graphics.Insets;
+    import androidx.core.view.ViewCompat;
+    import androidx.core.view.WindowInsetsCompat;
+    import androidx.recyclerview.widget.LinearLayoutManager;
+    import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
 
 
-public class ListQuestionActivity extends AppCompatActivity {
+    public class ListQuestionActivity extends AppCompatActivity {
 
-    private ArrayList<Question> questions;
-    private ListQuestionAdapter adapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_list_question);
-        questions = new ArrayList<>();
+        private ListQuestionAdapter adapter;
+        private ArrayList<Question> questions;
 
-        for (int i = 0; i < 1; i++) {
-            questions.add(new Question("Qui est Novak Djokovic ?", Arrays.asList("test","ff","fff","dsfsdf"), 0,"facile","nan.mp3"));
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            EdgeToEdge.enable(this);
+            setContentView(R.layout.activity_list_question);
+            UiUtils.updateTitleName(this, "Questionnaire");
 
+            questions = new ArrayList<>();
+
+            QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
+            questions = questionData.getQuestions();
+
+            adapter = new ListQuestionAdapter(questions);
+
+            RecyclerView recyclerView = findViewById(R.id.ListeQuestions);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
         }
-
-        adapter = new ListQuestionAdapter(questions);
-
-        RecyclerView recyclerView = findViewById(R.id.ListeQuestions);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
-}
