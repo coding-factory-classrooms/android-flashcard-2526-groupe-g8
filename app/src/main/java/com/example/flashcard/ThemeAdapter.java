@@ -52,8 +52,8 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder> 
         final TextView Description;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            Title = itemView.findViewById(R.id.titleTextView);
-            Description = itemView.findViewById(R.id.descriptionTextView);
+            Title = itemView.findViewById(R.id.titleTheme);
+            Description = itemView.findViewById(R.id.descriptionTheme);
 
         }
     };

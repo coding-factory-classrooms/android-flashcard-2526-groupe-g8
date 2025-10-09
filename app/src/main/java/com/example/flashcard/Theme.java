@@ -7,17 +7,20 @@ public class Theme implements Parcelable {
     private String title;
     private String description;
     private String link;
+    private String img;
 
-    public Theme(String title, String description, String link) {
+    public Theme(String title, String description, String link, String img) {
         this.title = title;
         this.description = description;
         this.link = link;
+        this.img = img;
     }
 
     protected Theme(Parcel in) {
         title = in.readString();
         description = in.readString();
         link = in.readString();
+        img = in.readString();
     }
 
     @Override
@@ -54,6 +57,9 @@ public class Theme implements Parcelable {
 
     public String getLink() {
         return link;
+    }
+    public String getImg() {
+        return img;
     }
 
     @Override

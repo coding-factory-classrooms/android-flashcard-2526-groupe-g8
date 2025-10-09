@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ThemeListActivity extends AppCompatActivity {
 
-    private List<Theme> Themes;
+    private List<Theme> themes;
     private ThemeAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +23,16 @@ public class ThemeListActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_theme_list);
 
-        Themes = new ArrayList<>();
+        UiUtils.updateTitleName(this, "Thèmes");
 
-        for (int i = 0 ; i < 50; i++){
-            Themes.add(new Theme("dzdq","qsdqd",""));
-            Themes.add(new Theme("dzdq","qsdqd",""));
+        themes = new ArrayList<>();
 
-        }
+        //Get json theme
 
-        adapter = new ThemeAdapter(Themes);
+        ThemeJSON themeData = ThemeJSON.loadFromJSON(this, R.raw.json_theme);
+        themes = themeData.getThemes();
+
+        adapter = new ThemeAdapter(themes);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
