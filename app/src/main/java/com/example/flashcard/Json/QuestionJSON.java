@@ -1,4 +1,4 @@
-package com.example.flashcard;
+package com.example.flashcard.Json;
 
 import android.content.Context;
 
@@ -8,8 +8,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
-import Question.Question;
+
+import com.example.flashcard.Question;
 
 
 public class QuestionJSON {

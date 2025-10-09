@@ -1,4 +1,4 @@
-package com.example.flashcard;
+package com.example.flashcard.Activity;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -7,11 +7,13 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.flashcard.R;
+import com.example.flashcard.Utils.UiUtils;
 
 public class AboutActivity extends AppCompatActivity {
 

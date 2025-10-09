@@ -1,10 +1,9 @@
-package com.example.flashcard;
+package com.example.flashcard.Utils;
 
 import android.app.Activity;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.util.Log;
 import android.widget.TextView;
+
+import com.example.flashcard.R;
 
 public class UiUtils {
 

@@ -1,7 +1,9 @@
-package com.example.flashcard;
+package com.example.flashcard.Utils;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+
+import com.example.flashcard.R;
 
 public final class AudioKit {
 

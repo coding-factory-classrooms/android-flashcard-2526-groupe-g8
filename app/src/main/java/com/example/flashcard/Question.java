@@ -3,29 +3,29 @@ package com.example.flashcard;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Question implements Parcelable {
     private String questionText;
     private List<String> options;
-    private int correctAnswerIndex;
-    private String difficulty;
+    @SerializedName("Answer")
+    private String answer;
     private String audioFile;
 
-    public Question(String questionText, List<String> options, int correctAnswerIndex,
-                    String difficulty, String audioFile) {
+    public Question(String questionText, List<String> options,
+                    String answer, String audioFile) {
         this.questionText = questionText;
         this.options = options;
-        this.correctAnswerIndex = correctAnswerIndex;
-        this.difficulty = difficulty;
+        this.answer = answer;
         this.audioFile = audioFile;
     }
 
     protected Question(Parcel in) {
         questionText = in.readString();
         options = in.createStringArrayList();
-        correctAnswerIndex = in.readInt();
-        difficulty = in.readString();
+        answer = in.readString();
         audioFile = in.readString();
     }
 
@@ -33,8 +33,7 @@ public class Question implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(questionText);
         dest.writeStringList(options);
-        dest.writeInt(correctAnswerIndex);
-        dest.writeString(difficulty);
+        dest.writeString(answer);
         dest.writeString(audioFile);
     }
 
@@ -55,38 +54,39 @@ public class Question implements Parcelable {
         }
     };
 
+    //Get functions
     public String getQuestionText() {
         return questionText;
     }
-
     public List<String> getOptions() {
         return options;
     }
+    public String getAnswer() { return answer; }
+    public String getAudioFile() { return audioFile; }
 
-    public int getCorrectAnswerIndex() {
-        return correctAnswerIndex;
+
+    public boolean isCorrectText(String selectedText) {
+        if (selectedText == null || answer == null) return false;
+        return selectedText.trim().equalsIgnoreCase(answer.trim());
     }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
 
-    public String getAudioFile() {
-        return audioFile;
-    }
-
-    public boolean isCorrect(int selectedIndex) {
-        return selectedIndex == correctAnswerIndex;
-    }
-
+    //i'm not sure this will be used but we never know !!!
+    //i'm useless piece of text (Oui je te copie thomas)
+    //thomas je t'aime
+    //sort avec moi
+    //je suis pas gay
+    //juste je respecte ton travail
+    //embauche moi stp
+    //je suis cool, beau, et un peu intelligent (juste des fois)
     @Override
     public String toString() {
         return "Question{" +
                 "questionText='" + questionText + '\'' +
                 ", options=" + options +
-                ", correctAnswerIndex=" + correctAnswerIndex +
-                ", difficulty='" + difficulty + '\'' +
+                ", answer='" + answer + '\'' +
                 ", audioFile='" + audioFile + '\'' +
                 '}';
     }
 }
+

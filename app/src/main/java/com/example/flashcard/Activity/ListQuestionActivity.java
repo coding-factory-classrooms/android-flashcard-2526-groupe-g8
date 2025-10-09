@@ -1,4 +1,4 @@
-    package com.example.flashcard;
+    package com.example.flashcard.Activity;
 
     import android.os.Bundle;
 
@@ -10,9 +10,14 @@
     import androidx.recyclerview.widget.LinearLayoutManager;
     import androidx.recyclerview.widget.RecyclerView;
 
+    import com.example.flashcard.ListQuestionAdapter;
+    import com.example.flashcard.Json.QuestionJSON;
+    import com.example.flashcard.R;
+    import com.example.flashcard.Utils.UiUtils;
+
     import java.util.ArrayList;
-    import java.util.Arrays;
-    import java.util.List;
+
+    import com.example.flashcard.Question;
 
 
     public class ListQuestionActivity extends AppCompatActivity {

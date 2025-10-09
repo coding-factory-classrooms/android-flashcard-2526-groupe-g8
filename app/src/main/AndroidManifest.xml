@@ -12,28 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flashcard">
         <activity
-            android:name=".ThemeListActivity"
+            android:name=".Activity.ThemeListActivity"
             android:exported="false" />
         <activity
-            android:name=".ThemeActivity"
+            android:name=".Activity.ModeActivity"
             android:exported="false" />
         <activity
-            android:name=".EsterEggActivity"
+            android:name=".Activity.EsterEggActivity"
             android:exported="false" />
         <activity
-            android:name=".RewardActivity"
+            android:name=".Activity.RewardActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".Activity.QuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.ListQuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".Activity.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".ListQuestionActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

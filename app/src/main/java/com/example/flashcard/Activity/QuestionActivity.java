@@ -1,11 +1,8 @@
 
-package com.example.flashcard;
+package com.example.flashcard.Activity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
@@ -14,19 +11,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.flashcard.Json.QuestionJSON;
+import com.example.flashcard.R;
+import com.example.flashcard.Utils.AudioKit;
+import com.example.flashcard.Utils.UiUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import Question.Question;
+import com.example.flashcard.Question;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -43,7 +40,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Question currentQuestion;
     private int questionIndex = 0;
     private int totalAnswer = 0;
-    private String difficulty = "hard";
+    private String difficulty = null;
 
     // Gestion Vars
     private List<String> currentChoices;
@@ -60,13 +57,17 @@ public class QuestionActivity extends AppCompatActivity {
         UiUtils.updateTitleName(this, "C'est l'heure de jouir !");
 
         txtQuestion = findViewById(R.id.NameTextQuestion);
-        rg = findViewById(R.id.radioGroupQuestion);
+        rg          = findViewById(R.id.radioGroupQuestion);
         btnValidate = findViewById(R.id.validateButton);
         btnPlaySong = findViewById(R.id.buttonPlaySong1);
 
         // JSON uniquement si l'index est 0
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
         questions = questionData.getQuestions();;
+
+        Intent intent = getIntent();
+
+        if(difficulty == null) difficulty = intent.getStringExtra("difficulty");
 
         showQuestion();
         updateProgressTxt();

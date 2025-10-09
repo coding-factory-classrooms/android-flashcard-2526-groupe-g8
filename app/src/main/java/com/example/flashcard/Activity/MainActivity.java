@@ -1,15 +1,12 @@
-package com.example.flashcard;
+package com.example.flashcard.Activity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -18,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.flashcard.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button playBtn = findViewById(R.id.playBtn);
         playBtn.setOnClickListener( view -> {
-            Intent intent2 = new Intent(this, ThemeListActivity.class);
+            Intent intent2 = new Intent(this, ModeActivity.class);
             startActivity(intent2);
         });
 

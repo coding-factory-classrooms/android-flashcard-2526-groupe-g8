@@ -1,4 +1,4 @@
-package com.example.flashcard;
+package com.example.flashcard.Activity;
 
 import android.os.Bundle;
 
@@ -9,6 +9,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.flashcard.R;
+import com.example.flashcard.Theme;
+import com.example.flashcard.ThemeAdapter;
+import com.example.flashcard.Json.ThemeJSON;
+import com.example.flashcard.Utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;

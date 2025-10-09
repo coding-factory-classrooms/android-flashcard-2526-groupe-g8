@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.flashcard.Activity.MainActivity;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapter.ViewHolder> implements View.OnClickListener {
 
-    private List<Question> Questions;
+    private ArrayList<Question> Questions;
 
     public ListQuestionAdapter(ArrayList<Question> questions) {
 
@@ -34,7 +35,6 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question question = Questions.get(position);
         holder.title.setText(question.getQuestionText());
-        holder.difficulty.setText(question.getDifficulty());
 
         holder.itemView.setTag(question);
         holder.itemView.setOnClickListener(this);
@@ -60,10 +60,8 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
         }
     }
     class ViewHolder extends RecyclerView.ViewHolder {
-
         final TextView title; //
         final TextView difficulty; //
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.itemQtitle); //
