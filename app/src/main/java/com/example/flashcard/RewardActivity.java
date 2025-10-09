@@ -15,6 +15,9 @@ import androidx.core.view.WindowInsetsCompat;
 public class RewardActivity extends AppCompatActivity {
     Button bouton;
 
+    // score value to print in message
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +46,41 @@ public class RewardActivity extends AppCompatActivity {
             }
         });
 
-        Intent srcIntent = getIntent();
-        int totalAns = srcIntent.getIntExtra("scoreValue",0);
-        int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
+        // Button to go to home
+        Intent intent3 = new Intent(this , RewardActivity.class);
 
-        TextView scoretxt = findViewById(R.id.scoreText);
-        scoretxt.setText(totalAns + "" + "/" + maxQuestion);
+        Button shareBtn = findViewById(R.id.shareBtn);
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // recuperation of score
+                Intent srcIntent = getIntent();
+                int totalAns = srcIntent.getIntExtra("scoreValue",0);
+                int maxQuestion = srcIntent.getIntExtra("totalQuestion" , 0);
+
+                TextView scoretxt = findViewById(R.id.scoreText);
+                scoretxt.setText(totalAns + "" + "/" + maxQuestion);
+                // sharing score message
+                Intent sendMessageIntent = new Intent();
+                sendMessageIntent.setAction(Intent.ACTION_SEND);
+                sendMessageIntent.putExtra(Intent.EXTRA_TEXT, "J'ai eu" + totalAns +"/" + maxQuestion + " au quiz Difficile sur l'app FlashCard !");
+                sendMessageIntent.setType("text"); // indicates the type of content shared via the Intent (the MIME type).
+
+                Intent shareIntent = Intent.createChooser(sendMessageIntent, null);
+                startActivity(shareIntent);
+
+            }
+        });
 
 
+
+//        // sharing score pic
+//        Intent shareIntent = new Intent();
+//        shareIntent.setAction(Intent.ACTION_SEND);
+//// Example: content://com.google.android.apps.photos.contentprovider/...
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, uriToImage);
+//        shareIntent.setType("image/jpeg");
+//        startActivity(Intent.createChooser(shareIntent, null));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
