@@ -21,14 +21,17 @@
             android:name=".QuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".ListQuestionActivity"
+            android:name=".MainActivity"
             android:exported="false" />
+        <!--android:name=".ListQuestionActivity"-->
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
+
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+                android:name=".ListQuestionActivity"
+                android:exported="true">
+            <!--android:name=".MainActivity"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
