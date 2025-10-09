@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,17 +39,16 @@ public class QuestionActivity extends AppCompatActivity {
 
     // Data vars
     private ArrayList<Question> questions;
-
     private ArrayList<Question> wrongAnswer = new ArrayList<Question>();
     private Question currentQuestion;
     private int questionIndex = 0;
     private int totalAnswer = 0;
+    private String difficulty = "hard";
 
     // Gestion Vars
     private List<String> currentChoices;
     private int correctIndex = -1;
     private boolean isValidated = false;
-    private String difficulty = "hard";
 
     //endregion
 
@@ -64,12 +64,14 @@ public class QuestionActivity extends AppCompatActivity {
         btnValidate = findViewById(R.id.validateButton);
         btnPlaySong = findViewById(R.id.buttonPlaySong1);
 
-        // JSON
+        // JSON uniquement si l'index est 0
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
         questions = questionData.getQuestions();;
 
         showQuestion();
         updateProgressTxt();
+        updateBtnTxt();
+
 
         btnPlaySong.setOnClickListener(v -> AudioKit.play(this, AudioKit.Sfx.QUESTION, currentQuestion.getAudioFile()));
         btnValidate.setOnClickListener(v -> onValidateAnswer());
@@ -134,7 +136,7 @@ public class QuestionActivity extends AppCompatActivity {
             Toast.makeText(this, "Choisis une réponse !", Toast.LENGTH_SHORT).show();
             return;
         }
-        //if user not validate answer
+        //if user not validate answer yet and he click
         if(!isValidated){
             RadioButton selected = findViewById(selectedId);
             int selectedIndex = rg.indexOfChild(selected);
@@ -143,25 +145,27 @@ public class QuestionActivity extends AppCompatActivity {
                 AudioKit.play(this, AudioKit.Sfx.WIN, null);
                 totalAnswer++;
                 Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
+                highlightChoicesCorrect(selectedIndex);
             } else {
                 AudioKit.play(this, AudioKit.Sfx.LOSE, null);
                 wrongAnswer.add(currentQuestion);
                 Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
+                highlightChoicesWrong(selectedIndex, correctIndex);
             }
 
             //change name and boolean for BTN
             isValidated = true;
-            btnValidate.setText("Question suivante");
+            updateBtnTxt();
         }else{
             // suite
             questionIndex++;
             if (questionIndex < questions.size()) {
-                showQuestion();
-                updateProgressTxt();
-                btnValidate.setText("Valider");
                 isValidated = false;
+                showQuestion();
+                updateBtnTxt();
+                updateProgressTxt();
             } else {
-                //TODO: Return REWARD
+                //TODO: Return to REWARD
                 Intent intent = new Intent(this, MainActivity.class);
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
 
@@ -179,6 +183,48 @@ public class QuestionActivity extends AppCompatActivity {
         TextView progress = findViewById(R.id.progressTxt);
         int uiQuestionIndex = questionIndex + 1;
         progress.setText(uiQuestionIndex + "/" + questions.size());
+    }
+    private void updateBtnTxt(){
+        if (!isValidated){
+            btnValidate.setText("Valider !");
+        }else{
+            if (questionIndex >= questions.size()) {
+                btnValidate.setText("Voir le résultat !");
+            }
+            btnValidate.setText("Question suivante !");
+        }
+    }
+
+    //set green rb
+    private void highlightChoicesCorrect(int selectedIndex) {
+        int green = ContextCompat.getColor(this, R.color.app_orange);
+        int white = ContextCompat.getColor(this, R.color.app_white);
+
+        //for all the RB, set the right one to green and others in white
+        for (int i = 0; i < rg.getChildCount(); i++) {
+            RadioButton rb = (RadioButton) rg.getChildAt(i);
+            rb.setTextColor(i == selectedIndex ? green : white);
+            rb.setEnabled(false);
+        }
+    }
+
+    //same thing ! but the answer in red, the good answer in green, and other in white !
+    private void highlightChoicesWrong(int selectedIndex, int correctIndex) {
+        int green = ContextCompat.getColor(this, R.color.app_orange);
+        int red   = ContextCompat.getColor(this, R.color.app_red);
+        int white = ContextCompat.getColor(this, R.color.app_white);
+
+        for (int i = 0; i < rg.getChildCount(); i++) {
+            RadioButton rb = (RadioButton) rg.getChildAt(i);
+            if (i == correctIndex) {
+                rb.setTextColor(green);
+            } else if (i == selectedIndex) {
+                rb.setTextColor(red);
+            } else {
+                rb.setTextColor(white);
+            }
+            rb.setEnabled(false);
+        }
     }
 
     @Override
