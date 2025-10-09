@@ -66,7 +66,6 @@ public class RewardActivity extends AppCompatActivity {
 
         ArrayList<Question> wrongAnswer = srcIntent.getParcelableArrayListExtra("wrongAnswer");
 
-        //TODO: recycler de wrongAnswer
 
         RecyclerView recyclerView = findViewById(R.id.ListeQuestions);
 
