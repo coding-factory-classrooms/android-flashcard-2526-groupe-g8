@@ -32,11 +32,11 @@ public class RewardActivity extends AppCompatActivity {
             }
         });
 
-        // Button to go to retry
-        Intent intent2 = new Intent(this , QuestionActivity.class);
+        // Button to go to home
+        Intent intent2 = new Intent(this , MainActivity.class);
 
         Button homeBtn = findViewById(R.id.homeBtn);
-        retryBtn.setOnClickListener(new View.OnClickListener() {
+        homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent2);

@@ -86,7 +86,7 @@ public class ModeActivity extends AppCompatActivity {
                                 break;
                         }
 
-                        Intent intent = new Intent(ModeActivity.this, ListQuestionActivity.class);
+                        Intent intent = new Intent(ModeActivity.this, QuestionActivity.class);
                         intent.putExtra("difficulty" , difficulty);
                         startActivity(intent);
                         Log.d(TAG, "onClick: " + which);

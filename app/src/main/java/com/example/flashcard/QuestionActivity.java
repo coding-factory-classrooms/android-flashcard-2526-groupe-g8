@@ -149,7 +149,7 @@ public class QuestionActivity extends AppCompatActivity {
                 btnValidate.setText("Valider");
                 isValidated = false;
             } else {
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, RewardActivity.class);
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
                 intent.putExtra("scoreValue", totalAnswer);
                 intent.putExtra("TotalQuestion", questions.size());
