@@ -78,6 +78,8 @@ public class QuestionActivity extends AppCompatActivity {
             QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
             questions = new ArrayList<>(questionData.getQuestions());
         }
+        
+        Collections.shuffle(questions);
 
         showQuestion();
         updateProgressTxt();
