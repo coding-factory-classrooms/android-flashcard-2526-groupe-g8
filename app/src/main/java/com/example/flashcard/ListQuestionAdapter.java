@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.flashcard.Activity.MainActivity;
 import com.example.flashcard.Activity.ModeActivity;
 import com.example.flashcard.Activity.QuestionActivity;
+import com.example.flashcard.Utils.AudioKit;
 
 import java.util.ArrayList;
 
@@ -36,10 +38,14 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question question = Questions.get(position);
-        holder.title.setText(question.getQuestionText());
+        holder.title.setText("Jouir c'est cool");
 
         holder.itemView.setTag(question);
         holder.itemView.setOnClickListener(this);
+
+        holder.jouirBtn.setOnClickListener(v ->
+                AudioKit.play(v.getContext(), AudioKit.Sfx.QUESTION, question.getAudioFile())
+        );
     }
 
     @Override
@@ -67,12 +73,11 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
     }
     class ViewHolder extends RecyclerView.ViewHolder {
         final TextView title; //
-        final TextView difficulty; //
+        final Button jouirBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.itemQtitle); //
-            difficulty = itemView.findViewById(R.id.itemQdifficulty); //
-
+            title = itemView.findViewById(R.id.itemQtitle);
+            jouirBtn = itemView.findViewById(R.id.jouirBtn);
         }
     }
 }
