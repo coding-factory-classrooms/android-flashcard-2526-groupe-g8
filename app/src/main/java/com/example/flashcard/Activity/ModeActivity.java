@@ -14,7 +14,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.flashcard.Question;
 import com.example.flashcard.R;
+import com.example.flashcard.Theme;
+
+import java.util.ArrayList;
 
 public class ModeActivity extends AppCompatActivity {
     public String difficulty = "";
@@ -27,9 +31,7 @@ public class ModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
-
         // button one question
-
         Intent intent2 = new Intent(this, ListQuestionActivity.class);
 
         Button oneQuestionButton = findViewById(R.id.oneQuestionButton);

@@ -28,6 +28,7 @@ public class Theme implements Parcelable {
         dest.writeString(title);
         dest.writeString(description);
         dest.writeString(link);
+        dest.writeString(img);
     }
 
     @Override

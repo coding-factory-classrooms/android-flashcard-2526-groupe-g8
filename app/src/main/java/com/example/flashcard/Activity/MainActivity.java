@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button playBtn = findViewById(R.id.playBtn);
         playBtn.setOnClickListener( view -> {
-            Intent intent2 = new Intent(this, ModeActivity.class);
+            Intent intent2 = new Intent(this, ThemeListActivity.class);
             startActivity(intent2);
         });
 

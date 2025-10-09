@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flashcard">
         <activity
-            android:name=".Activity.ThemeListActivity"
+            android:name=".Activity.ListQuestionActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.ModeActivity"
@@ -27,7 +27,7 @@
             android:name=".Activity.QuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ListQuestionActivity"
+            android:name=".Activity.ThemeListActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.AboutActivity"

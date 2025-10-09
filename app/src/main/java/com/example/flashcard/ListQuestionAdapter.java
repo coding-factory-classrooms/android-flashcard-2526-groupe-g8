@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashcard.Activity.MainActivity;
+import com.example.flashcard.Activity.ModeActivity;
 
 import java.util.ArrayList;
 
@@ -48,16 +49,21 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
 
     //@Override
     public void onClick(View view) {
-        Log.i("ListQuestionAdapter" , "On Click:class");
-        switch (view.getId()) {
-            case R.id.itemQlist:
-                Context context = view.getContext();
-                Question q = (Question) view.getTag();
-                Intent intent = new Intent(context, MainActivity.class);
+        Question question = (Question) view.getTag();
+        Log.d("QuestionAdapter", "Question cliquée : "
+                + question.getQuestionText()
+                + " — Réponses : " + question.getOptions()
+                + " — Bonne réponse : " + question.getAudioFile());
 
-                context.startActivity(intent);
-                break;
-        }
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(question);
+
+        // Création de l’intent
+        Context context = view.getContext();
+//        // ICI ! Celestin faut changer la route !!
+        Intent intent = new Intent(context, ModeActivity.class);
+        intent.putExtra("questions", questions);
+        context.startActivity(intent);
     }
     class ViewHolder extends RecyclerView.ViewHolder {
         final TextView title; //

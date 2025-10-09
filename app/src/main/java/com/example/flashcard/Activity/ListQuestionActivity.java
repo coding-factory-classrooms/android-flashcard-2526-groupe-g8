@@ -1,6 +1,7 @@
     package com.example.flashcard.Activity;
 
     import android.os.Bundle;
+    import android.util.Log;
 
     import androidx.activity.EdgeToEdge;
     import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@
     import com.example.flashcard.ListQuestionAdapter;
     import com.example.flashcard.Json.QuestionJSON;
     import com.example.flashcard.R;
+    import com.example.flashcard.Theme;
     import com.example.flashcard.Utils.UiUtils;
 
     import java.util.ArrayList;
@@ -30,7 +32,10 @@
             super.onCreate(savedInstanceState);
             EdgeToEdge.enable(this);
             setContentView(R.layout.activity_list_question);
-            UiUtils.updateTitleName(this, "Questionnaire");
+            UiUtils.updateTitleName(this, "Liste Jouissements");
+
+
+
 
             questions = new ArrayList<>();
 

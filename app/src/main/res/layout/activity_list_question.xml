@@ -7,15 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ListQuestionActivity">
 
+    <include
+        android:id="@+id/includeBanner"
+        layout="@layout/include_banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListeQuestions"
         android:layout_width="389dp"
         android:layout_height="629dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeBanner"
         app:layout_constraintVertical_bias="0.619"
         tools:itemCount="8"
         tools:listitem="@layout/item_listquestions" />

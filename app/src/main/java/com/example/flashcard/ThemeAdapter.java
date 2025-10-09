@@ -1,5 +1,7 @@
 package com.example.flashcard;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.flashcard.Activity.ModeActivity;
 
 import java.util.List;
 
@@ -44,11 +48,17 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder> 
 
     @Override
     public void onClick(View view) {
-        Log.i("Action" , "On Click");
 
+        Theme theme = (Theme) view.getTag();
+        Log.d("ThemeAdapter", "Thème cliqué : "
+                + theme.getTitle()
+                + " — " + theme.getDescription());
+        //store a theme clicked
 
-
-
+        Context context = view.getContext();
+        Intent intent = new Intent(context, ModeActivity.class);
+        intent.putExtra("theme", theme);
+        context.startActivity(intent);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
