@@ -26,7 +26,7 @@ public class ThemeListActivity extends AppCompatActivity {
         Themes = new ArrayList<>();
 
         for (int i = 0 ; i < 50; i++){
-            Themes.add(new Theme("dzdq","qsdqd",""));
+            Themes.add(new Theme("dzdq","qsdqd","cwcwxcw"));
             Themes.add(new Theme("dzdq","qsdqd",""));
 
         }
