@@ -4,6 +4,7 @@ package com.example.flashcard;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,10 +33,13 @@ public class QuestionActivity extends AppCompatActivity {
     private Button btnValidate, btnPlaySong;
 
     // Data vars
-    private List<Question> questions;
+    private ArrayList<Question> questions;
+
+    private ArrayList<Question> wrongAnswer = new ArrayList<Question>();
     private Question currentQuestion;
     private int questionIndex = 0;
     private int totalAnswer = 0;
+
 
     // Gestion Vars
     private List<String> currentChoices;
@@ -61,7 +66,6 @@ public class QuestionActivity extends AppCompatActivity {
         // JSON
         QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
         questions = questionData.getQuestions();;
-
         //TODO question X/MAX
 
         showQuestion();
@@ -135,6 +139,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Toast.makeText(this, "Bonne réponse", Toast.LENGTH_SHORT).show();
             } else {
                 play(loseSound);
+                wrongAnswer.add(currentQuestion);
                 Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
             }
 
@@ -149,10 +154,14 @@ public class QuestionActivity extends AppCompatActivity {
                 btnValidate.setText("Valider");
                 isValidated = false;
             } else {
+                //TODO: Return REWARD
                 Intent intent = new Intent(this, MainActivity.class);
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
+
                 intent.putExtra("scoreValue", totalAnswer);
                 intent.putExtra("TotalQuestion", questions.size());
+                intent.putExtra("wrongAnswer", wrongAnswer);
+
                 startActivity(intent);
                 finish();
             }
