@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.flashcard.R;
+import com.example.flashcard.Theme;
 
 public class ModeActivity extends AppCompatActivity {
     public String difficulty = "";
@@ -28,8 +29,10 @@ public class ModeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
 
-        // button one question
+        Theme t = getIntent().getParcelableExtra("theme");
+        Log.d("ModeActivity", "Thème reçu : " + t.toString());
 
+        // button one question
         Intent intent2 = new Intent(this, ListQuestionActivity.class);
 
         Button oneQuestionButton = findViewById(R.id.oneQuestionButton);
