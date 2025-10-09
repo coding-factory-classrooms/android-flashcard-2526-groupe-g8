@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent2 = new Intent(this, ModeActivity.class);
 
-        Button playButton = findViewById(R.id.playButton);
+        Button playButton = findViewById(R.id.playBtn);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
