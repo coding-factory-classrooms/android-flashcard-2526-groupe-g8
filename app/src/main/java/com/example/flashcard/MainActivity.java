@@ -34,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button aboutBtn = findViewById(R.id.aboutBtn);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Log.i("MainActivity", "About Click About !");
+                Log.i("MainActivity", "About Click !");
                 startActivity(intent);
             }
         });
