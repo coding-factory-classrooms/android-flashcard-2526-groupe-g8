@@ -36,7 +36,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     // Data vars
     private ArrayList<Question> questions;
-    private ArrayList<Question> wrongAnswer = new ArrayList<Question>();
+    private ArrayList<Question> wrongAnswer = new ArrayList<>();
     private Question currentQuestion;
     private int questionIndex = 0;
     private int totalAnswer = 0;
@@ -62,17 +62,17 @@ public class QuestionActivity extends AppCompatActivity {
         btnPlaySong = findViewById(R.id.buttonPlaySong1);
 
         Intent intent = getIntent();
-
         ArrayList<Question> provided = intent.getParcelableArrayListExtra("questions");
+
         if (provided != null) {
-            // SINGLE  Q U E S T I O N  MODE
+            // DATA  Q U E S T I O N  MODE
             questions = provided;
             difficulty = intent.getStringExtra("difficulty");
             if(difficulty == null) difficulty = "normal";
              //by default normal, why not add custom like multi mode, but i have a little FLEEEEEMME
         } else {
-            // MULTI  Q U E S T I O N  MODE
 
+            // JSON Q U E S T I O N  MODE
             difficulty = intent.getStringExtra("difficulty");
             // JSON
             QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);

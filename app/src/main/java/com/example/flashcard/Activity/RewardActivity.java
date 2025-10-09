@@ -12,7 +12,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.flashcard.Question;
 import com.example.flashcard.R;
+
+import java.util.ArrayList;
 
 public class RewardActivity extends AppCompatActivity {
     Button bouton;
@@ -38,15 +41,28 @@ public class RewardActivity extends AppCompatActivity {
         TextView difficulytxt = findViewById(R.id.difficultyText);
         difficulytxt.setText(difficulty);
 
+        ArrayList<Question> wrongAnswer = srcIntent.getParcelableArrayListExtra("wrongAnswer");
+
+        //TODO: recycler de wrongAnswer
+
 
         // Button to go to retry
         Intent intent = new Intent(this , QuestionActivity.class);
-
+        intent.putExtra("questions", wrongAnswer);
         Button retryBtn = findViewById(R.id.retryBtn);
+
+        if (wrongAnswer.isEmpty()) {
+            retryBtn.setVisibility(View.GONE);
+        } else {
+            retryBtn.setVisibility(View.VISIBLE);
+        }
+
         retryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                if(!wrongAnswer.isEmpty()){
+                    startActivity(intent);
+                }
             }
         });
 
