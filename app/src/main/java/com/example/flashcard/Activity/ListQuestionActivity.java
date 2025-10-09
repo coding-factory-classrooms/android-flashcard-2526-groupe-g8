@@ -18,6 +18,7 @@
     import com.example.flashcard.Utils.UiUtils;
 
     import java.util.ArrayList;
+    import java.util.Objects;
 
     import com.example.flashcard.Question;
 
@@ -34,12 +35,15 @@
             setContentView(R.layout.activity_list_question);
             UiUtils.updateTitleName(this, "Liste Jouissements");
 
-
-
-
             questions = new ArrayList<>();
 
-            QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
+            Theme theme = getIntent().getParcelableExtra("theme");
+            Log.d("bite", String.valueOf(theme));
+
+            int rawIdJson = QuestionJSON.jsonQuestionRawIdByTheme(this, theme);
+
+            QuestionJSON questionData = QuestionJSON.loadFromJSON(this, rawIdJson);
+
             questions = questionData.getQuestions();
 
             adapter = new ListQuestionAdapter(questions);

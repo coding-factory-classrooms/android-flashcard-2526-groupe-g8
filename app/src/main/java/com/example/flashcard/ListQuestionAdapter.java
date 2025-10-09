@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashcard.Activity.MainActivity;
 import com.example.flashcard.Activity.ModeActivity;
+import com.example.flashcard.Activity.QuestionActivity;
 
 import java.util.ArrayList;
 
@@ -60,8 +61,7 @@ public class ListQuestionAdapter extends RecyclerView.Adapter<ListQuestionAdapte
 
         // Création de l’intent
         Context context = view.getContext();
-//        // ICI ! Celestin faut changer la route !!
-        Intent intent = new Intent(context, ModeActivity.class);
+        Intent intent = new Intent(context, QuestionActivity.class);
         intent.putExtra("questions", questions);
         context.startActivity(intent);
     }

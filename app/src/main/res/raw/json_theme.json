@@ -3,13 +3,13 @@
     {
       "title": "Jouissement de plaisir...",
       "description": "Affontez les jouissement les plus terrible de personalités.",
-      "link": "joui.json",
+      "link": "json_joui.json",
       "img": "theme_joui"
     },
     {
       "title": "Pet turbo puissant...",
       "description": "Sniffez moi ces pets.",
-      "link": "crie.json",
+      "link": "json_pet.json",
       "img": "clem_about"
     }
   ]

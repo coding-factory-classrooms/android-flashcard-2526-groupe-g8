@@ -32,73 +32,33 @@ public class ModeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mode);
         // button one question
-        Intent intent2 = new Intent(this, ListQuestionActivity.class);
 
+        Theme themeSelected = getIntent().getParcelableExtra("theme");
+        Log.d("bite", themeSelected.toString());
+        //btn single
+        Intent intent2 = new Intent(this, ListQuestionActivity.class);
+        intent2.putExtra("theme", themeSelected);
         Button oneQuestionButton = findViewById(R.id.oneQuestionButton);
         oneQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("MainActivity2", "About Click Mode !");
                 startActivity(intent2);
             }
         });
 
-        // button multiple question
-
-        Intent intent3 = new Intent(this, ListQuestionActivity.class);
-
+        //btn multiple
         Button multipleQuestionButton = findViewById(R.id.multipleQuestionButton);
         multipleQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("MainActivity2", "About Click Mode !");
+                Log.i("MainActivity2", "Multiple Mode !");
                 // int compteur = 0;
                 if (difficulty.isEmpty() || compteur>0){ // compteur pour savoir si on a déjà choisi un diff
-                    showListView();
-                    compteur+= 1;
-                } else {
-                    startActivity(intent3);
+                    showListView(themeSelected);
+                    compteur += 1;
                 }
-
             }
 
-            // AlerteTag for multiple
-
-            void showListView() {
-                String[] items = {
-                        "Facile",
-                        "Moyen",
-                        "Difficile",
-                };
-                Log.i("TAG", "showListView: ");
-                AlertDialog.Builder builder = new AlertDialog.Builder(ModeActivity.this);
-                builder.setTitle("Select diff");
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "onClick: " + which);
-                        // String difficulty = "";
-                        switch (which) {
-                            case 0:
-                                difficulty = "easy";
-                                break;
-                            case 1:
-                                difficulty = "medium";
-                                break;
-                            case 2:
-                                difficulty = "hard";
-                                break;
-                        }
-
-                        Intent intent = new Intent(ModeActivity.this, QuestionActivity.class);
-                        intent.putExtra("difficulty" , difficulty);
-                        startActivity(intent);
-                        Log.d(TAG, "onClick: " + which);
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -108,6 +68,40 @@ public class ModeActivity extends AppCompatActivity {
         });
     }
 
+    void showListView(Theme theme) {
+        String[] items = {
+                "Facile",
+                "Moyen",
+                "Difficile",
+        };
+        Log.i("TAG", "showListView: ");
+        AlertDialog.Builder builder = new AlertDialog.Builder(ModeActivity.this);
+        builder.setTitle("Select diff");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick: " + which);
+                // String difficulty = "";
+                switch (which) {
+                    case 0:
+                        difficulty = "easy";
+                        break;
+                    case 1:
+                        difficulty = "medium";
+                        break;
+                    case 2:
+                        difficulty = "hard";
+                        break;
+                }
 
-
+                Intent intent = new Intent(ModeActivity.this, QuestionActivity.class);
+                intent.putExtra("difficulty" , difficulty);
+                intent.putExtra("theme", theme);
+                startActivity(intent);
+                Log.d(TAG, "onClick: " + which);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
