@@ -61,13 +61,23 @@ public class QuestionActivity extends AppCompatActivity {
         btnValidate = findViewById(R.id.validateButton);
         btnPlaySong = findViewById(R.id.buttonPlaySong1);
 
-        // JSON uniquement si l'index est 0
-        QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
-        questions = questionData.getQuestions();;
-
         Intent intent = getIntent();
 
-        if(difficulty == null) difficulty = intent.getStringExtra("difficulty");
+        ArrayList<Question> provided = intent.getParcelableArrayListExtra("questions");
+        if (provided != null) {
+            // SINGLE  Q U E S T I O N  MODE
+            questions = provided;
+            difficulty = intent.getStringExtra("difficulty");
+            if(difficulty == null) difficulty = "normal";
+             //by default normal, why not add custom like multi mode, but i have a little FLEEEEEMME
+        } else {
+            // MULTI  Q U E S T I O N  MODE
+
+            difficulty = intent.getStringExtra("difficulty");
+            // JSON
+            QuestionJSON questionData = QuestionJSON.loadFromJSON(this, R.raw.json_joui);
+            questions = new ArrayList<>(questionData.getQuestions());
+        }
 
         showQuestion();
         updateProgressTxt();
@@ -102,7 +112,6 @@ public class QuestionActivity extends AppCompatActivity {
         //And clear RB checked ? i need to verify if it's useless or not
         rg.clearCheck();
     }
-
 
     private List<String> buildChoices(Question q, String d) {
         // how much fake options
@@ -166,13 +175,13 @@ public class QuestionActivity extends AppCompatActivity {
                 updateBtnTxt();
                 updateProgressTxt();
             } else {
-                //TODO: Return to REWARD
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, RewardActivity.class);
                 Toast.makeText(this, "Fin du quiz !", Toast.LENGTH_LONG).show();
 
                 intent.putExtra("scoreValue", totalAnswer);
-                intent.putExtra("TotalQuestion", questions.size());
+                intent.putExtra("totalQuestion", questions.size());
                 intent.putExtra("wrongAnswer", wrongAnswer);
+                intent.putExtra("difficulty", difficulty);
 
                 startActivity(intent);
                 finish();
@@ -189,14 +198,19 @@ public class QuestionActivity extends AppCompatActivity {
         if (!isValidated){
             btnValidate.setText("Valider !");
         }else{
-            if (questionIndex >= questions.size()) {
+            if (questionIndex+1 == questions.size())
+            {
                 btnValidate.setText("Voir le résultat !");
             }
-            btnValidate.setText("Question suivante !");
+            else
+            {
+                btnValidate.setText("Question suivante !");
+            }
         }
     }
 
-    //set green rb
+    //region Color RadioBtn
+    //set orange rb
     private void highlightChoicesCorrect(int selectedIndex) {
         int green = ContextCompat.getColor(this, R.color.app_orange);
         int white = ContextCompat.getColor(this, R.color.app_white);
@@ -209,7 +223,7 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
-    //same thing ! but the answer in red, the good answer in green, and other in white !
+    //same thing ! but the answer in red, the good answer in orange, and other in white !
     private void highlightChoicesWrong(int selectedIndex, int correctIndex) {
         int green = ContextCompat.getColor(this, R.color.app_orange);
         int red   = ContextCompat.getColor(this, R.color.app_red);
@@ -227,6 +241,7 @@ public class QuestionActivity extends AppCompatActivity {
             rb.setEnabled(false);
         }
     }
+    //endregion
 
     @Override
     protected void onDestroy() {
