@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class ModeActivity extends AppCompatActivity {
     public String difficulty = "";
     public int compteur = 0;
-    public static final String TAG = "themeActivity";
+    public static final String TAG = "ModeActivity";
     Button button;
 
     @Override
@@ -49,7 +49,7 @@ public class ModeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("MainActivity2", "About Click Mode !");
                 // int compteur = 0;
-                if (difficulty.isEmpty() || compteur>0){ // compteur pour savoir si on a déjà choisi un diff
+                if (difficulty.isEmpty() || compteur>0){ // counter to know if a diff has already been chosen
                     showListView();
                     compteur+= 1;
                 } else {

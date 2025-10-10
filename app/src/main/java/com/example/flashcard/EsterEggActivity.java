@@ -36,9 +36,9 @@ public class EsterEggActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (counter < 10) {
-                int idx = counter % displacementPosX.length;   // loop advance
-                v.setTranslationX(displacementPosX[idx]);
-                v.setTranslationY(displacementPosY[idx]);
+                int index = counter % displacementPosX.length;   // loop advance
+                v.setTranslationX(displacementPosX[index]);
+                v.setTranslationY(displacementPosY[index]);
                 counter++;
             } else {
                     startActivity(intent);
