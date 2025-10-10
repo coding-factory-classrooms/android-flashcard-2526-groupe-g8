@@ -127,6 +127,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         // make pool of options
         List<String> pool = new ArrayList<>(q.getOptions());
+        Collections.shuffle(pool);
 
         // Take the wanted number from the pool
         int take = Math.min(wanted, pool.size());
@@ -134,6 +135,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         // add the answer inside the choices
         choices.add(q.getAnswer());
+
 
         // S H U F F L A G E !
         Collections.shuffle(choices);
