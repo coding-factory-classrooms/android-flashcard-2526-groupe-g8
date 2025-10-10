@@ -136,7 +136,7 @@ public class RewardActivity extends AppCompatActivity {
                 Intent sendMessageIntent = new Intent();
                 sendMessageIntent.setAction(Intent.ACTION_SEND);
                 sendMessageIntent.putExtra(Intent.EXTRA_TEXT, "J'ai eu " + totalAns +"/" + maxQuestion + " au quiz Difficile sur l'app FlashCard !");
-                sendMessageIntent.setType("text"); // indicates the type of content shared via the Intent (the MIME type).
+                sendMessageIntent.setType("text/plain"); // indicates the type of content shared via the Intent (the MIME type).
 
                 Intent shareIntent = Intent.createChooser(sendMessageIntent, null);
                 startActivity(shareIntent);
