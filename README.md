@@ -38,3 +38,6 @@ N'hésitez pas à partager votre score à vos amis !
 Projet libre et humoristique — licence JouirIT (MIT mais version plus cool quoi).
 
 ---
+
+Edit :
+Sorry ROBIN ! J'ai oublié de merge dev dans main (promis rien à été modif) Aussi, on a rien modifier vendredi, trop fatuigué de la veille pour continuer. Donc ce que tu a vu vendredi matin, c'était le projet final ! il nous manque l'api, TimeAttack, et hardcore. BISOUS ET BON WEEKEND !! MERCI POUR CETTE SEMAINE UWU
